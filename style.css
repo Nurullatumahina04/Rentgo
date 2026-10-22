@@ -1,148 +1,313 @@
 
-document.addEventListener("DOMContentLoaded", () => {
-  // Ganti dengan nomor WhatsApp pengelola.
-  // Gunakan kode negara 62 tanpa tanda + atau angka 0 di awal.
-  const NOMOR_WHATSAPP = "6281234567890";
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-  const hargaKendaraan = {
-    "Honda Beat": 80000,
-    "Honda Vario": 100000,
-    "Yamaha NMAX": 150000,
-    "Toyota Avanza": 350000,
-    "Toyota Fortuner": 850000
-  };
+html {
+    scroll-behavior: smooth;
+}
 
-  const form = document.getElementById("bookingForm");
-  const namaInput = document.getElementById("nama");
-  const kendaraanInput = document.getElementById("kendaraan");
-  const tanggalInput = document.getElementById("tanggal");
-  const durasiInput = document.getElementById("durasi");
-  const totalHarga = document.getElementById("totalHarga");
+body {
+    font-family: Arial, sans-serif;
+    color: #182235;
+    background: #ffffff;
+    line-height: 1.6;
+}
 
-  function formatRupiah(angka) {
-    return new Intl.NumberFormat("id-ID", {
-      style: "currency",
-      currency: "IDR",
-      maximumFractionDigits: 0
-    }).format(angka);
-  }
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 8%;
+    background: #101b30;
+    color: white;
+}
 
-  // Menghitung perkiraan harga sewa.
-  function hitungTotal() {
-    const harga = hargaKendaraan[kendaraanInput.value] || 0;
-    const durasi = Number(durasiInput.value) || 0;
+.logo {
+    font-size: 28px;
+    font-weight: bold;
+}
 
-    totalHarga.textContent = formatRupiah(
-      harga > 0 && durasi > 0 ? harga * durasi : 0
-    );
-  }
+.logo span {
+    color: #f3b544;
+}
 
-  // Filter motor matic dan mobil.
-  document.querySelectorAll("[data-filter]").forEach(button => {
-    button.addEventListener("click", () => {
-      document.querySelectorAll("[data-filter]").forEach(item => {
-        item.classList.remove("active");
-      });
+nav {
+    display: flex;
+    gap: 25px;
+}
 
-      button.classList.add("active");
+nav a {
+    color: white;
+    text-decoration: none;
+    font-size: 14px;
+}
 
-      document.querySelectorAll(".vehicle-card").forEach(card => {
-        const filter = button.dataset.filter;
+nav a:hover {
+    color: #f3b544;
+}
 
-        card.style.display =
-          filter === "semua" || card.dataset.category === filter
-            ? ""
-            : "none";
-      });
-    });
-  });
+.hero {
+    min-height: 420px;
+    display: flex;
+    align-items: center;
+    padding: 70px 8%;
+    background: linear-gradient(90deg, #101b30 0%, #1d3453 100%);
+    color: white;
+}
 
-  // Tombol pilih kendaraan mengisi formulir secara otomatis.
-  document.querySelectorAll("[data-vehicle]").forEach(button => {
-    button.addEventListener("click", () => {
-      kendaraanInput.value = button.dataset.vehicle;
-      hitungTotal();
+.hero-content {
+    max-width: 600px;
+}
 
-      document.getElementById("booking").scrollIntoView({
-        behavior: "smooth"
-      });
-    });
-  });
+.label {
+    color: #d99c2b;
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    margin-bottom: 12px;
+}
 
-  // Tanggal sewa minimal hari ini.
-  const hariIni = new Date();
-  tanggalInput.min = [
-    hariIni.getFullYear(),
-    String(hariIni.getMonth() + 1).padStart(2, "0"),
-    String(hariIni.getDate()).padStart(2, "0")
-  ].join("-");
+.hero h1 {
+    font-size: 46px;
+    line-height: 1.2;
+    margin-bottom: 18px;
+}
 
-  kendaraanInput.addEventListener("change", hitungTotal);
-  durasiInput.addEventListener("input", hitungTotal);
+.hero h1 span {
+    color: #f3b544;
+}
 
-  // Mengirim detail pesanan ke WhatsApp.
-  form.addEventListener("submit", event => {
-    event.preventDefault();
+.hero-content > p:not(.label) {
+    color: #d6deea;
+    margin-bottom: 28px;
+}
 
-    if (!form.reportValidity()) return;
+.btn {
+    display: inline-block;
+    padding: 12px 20px;
+    background: #f3b544;
+    color: #101b30;
+    border: none;
+    border-radius: 6px;
+    font-weight: bold;
+    text-decoration: none;
+    cursor: pointer;
+    transition: 0.2s;
+}
 
-    const nama = namaInput.value.trim();
-    const kendaraan = kendaraanInput.value;
-    const tanggal = tanggalInput.value;
-    const durasi = Number(durasiInput.value);
-    const harga = hargaKendaraan[kendaraan];
+.btn:hover {
+    background: #e3a32d;
+    transform: translateY(-2px);
+}
 
-    if (!harga || durasi < 1 || durasi > 30) {
-      alert("Silakan periksa pilihan kendaraan dan durasi sewa.");
-      return;
+.kendaraan,
+.pemesanan {
+    padding: 65px 8%;
+}
+
+.section-title {
+    text-align: center;
+    margin-bottom: 35px;
+}
+
+.section-title h2 {
+    font-size: 30px;
+    margin-bottom: 8px;
+}
+
+.section-title > p:last-child {
+    color: #687386;
+}
+
+.vehicle-list {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 20px;
+}
+
+.vehicle-card {
+    overflow: hidden;
+    border: 1px solid #e6eaf0;
+    border-radius: 12px;
+    background: white;
+    box-shadow: 0 5px 18px rgba(16, 27, 48, 0.07);
+    transition: 0.2s;
+}
+
+.vehicle-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 24px rgba(16, 27, 48, 0.12);
+}
+
+.vehicle-card img {
+    width: 100%;
+    height: 170px;
+    object-fit: cover;
+    display: block;
+}
+
+.vehicle-info {
+    padding: 18px;
+}
+
+.vehicle-info h3 {
+    font-size: 18px;
+    margin-bottom: 3px;
+}
+
+.category {
+    color: #687386;
+    font-size: 13px;
+}
+
+.price {
+    margin: 15px 0;
+    font-size: 19px;
+    font-weight: bold;
+    color: #c48a1e;
+}
+
+.price span {
+    font-size: 12px;
+    color: #687386;
+    font-weight: normal;
+}
+
+.vehicle-info .btn {
+    width: 100%;
+    font-size: 13px;
+}
+
+.pemesanan {
+    background: #f5f7fa;
+}
+
+form {
+    max-width: 520px;
+    margin: 0 auto;
+    padding: 28px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 5px 20px rgba(16, 27, 48, 0.07);
+}
+
+form label {
+    display: block;
+    margin: 15px 0 7px;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+form label:first-child {
+    margin-top: 0;
+}
+
+form input,
+form select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #d8dee8;
+    border-radius: 6px;
+    font-size: 14px;
+    background: white;
+}
+
+form input:focus,
+form select:focus {
+    outline: 2px solid #f3b544;
+    border-color: transparent;
+}
+
+.total {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 24px 0;
+    padding: 16px;
+    border-radius: 8px;
+    background: #f5f7fa;
+}
+
+.total strong {
+    font-size: 21px;
+    color: #bd841b;
+}
+
+.btn-submit {
+    width: 100%;
+    font-size: 15px;
+}
+
+footer {
+    padding: 35px 8%;
+    text-align: center;
+    background: #101b30;
+    color: white;
+}
+
+footer p {
+    color: #d6deea;
+    font-size: 14px;
+    margin-top: 8px;
+}
+
+footer .copyright {
+    margin-top: 20px;
+    font-size: 12px;
+    color: #aab5c5;
+}
+
+@media (max-width: 1000px) {
+    .vehicle-list {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 600px) {
+    header {
+        flex-direction: column;
+        gap: 12px;
+        padding: 18px 5%;
     }
 
-    if (!tanggal || tanggal < tanggalInput.min) {
-      alert("Silakan pilih tanggal sewa yang benar.");
-      return;
+    nav {
+        gap: 16px;
     }
 
-    const tanggalFormat = new Date(tanggal + "T00:00:00")
-      .toLocaleDateString("id-ID", {
-        day: "numeric",
-        month: "long",
-        year: "numeric"
-      });
-
-    const total = harga * durasi;
-
-    const pesan = [
-      "Halo, saya ingin memesan kendaraan dari RentGo.",
-      "",
-      "Nama: " + nama,
-      "Kendaraan: " + kendaraan,
-      "Tanggal sewa: " + tanggalFormat,
-      "Durasi: " + durasi + " hari",
-      "Perkiraan total: " + formatRupiah(total),
-      "",
-      "Mohon informasi lebih lanjut. Terima kasih."
-    ].join("\n");
-
-    // Jangan mengarahkan pesanan ke nomor contoh.
-    if (
-      !NOMOR_WHATSAPP ||
-      NOMOR_WHATSAPP === "6281234567890"
-    ) {
-      alert(
-        "Website siap digunakan. Untuk mengirim pesanan, " +
-        "ganti NOMOR_WHATSAPP di file script.js dengan nomor pengelola."
-      );
-      return;
+    nav a {
+        font-size: 12px;
     }
 
-    const url =
-      "https://wa.me/" +
-      NOMOR_WHATSAPP +
-      "?text=" +
-      encodeURIComponent(pesan);
+    .hero {
+        min-height: 360px;
+        padding: 55px 6%;
+    }
 
-    window.open(url, "_blank", "noopener,noreferrer");
-  });
+    .hero h1 {
+        font-size: 35px;
+    }
 
-  hitungTotal();
-});
+    .kendaraan,
+    .pemesanan {
+        padding: 45px 5%;
+    }
+
+    .section-title h2 {
+        font-size: 25px;
+    }
+
+    .vehicle-list {
+        grid-template-columns: 1fr;
+    }
+
+    .vehicle-card img {
+        height: 210px;
+    }
+
+    form {
+        padding: 20px;
+    }
+}
