@@ -12,7 +12,7 @@ html {
 body {
     font-family: Arial, sans-serif;
     color: #182235;
-    background: #ffffff;
+    background: #fff;
     line-height: 1.6;
 }
 
@@ -20,7 +20,7 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px 8%;
+    padding: 18px 8%;
     background: #101b30;
     color: white;
 }
@@ -36,7 +36,7 @@ header {
 
 nav {
     display: flex;
-    gap: 25px;
+    gap: 24px;
 }
 
 nav a {
@@ -50,16 +50,16 @@ nav a:hover {
 }
 
 .hero {
-    min-height: 420px;
+    min-height: 400px;
     display: flex;
     align-items: center;
-    padding: 70px 8%;
-    background: linear-gradient(90deg, #101b30 0%, #1d3453 100%);
+    padding: 65px 8%;
+    background: linear-gradient(110deg, #101b30, #294466);
     color: white;
 }
 
 .hero-content {
-    max-width: 600px;
+    max-width: 580px;
 }
 
 .label {
@@ -71,7 +71,7 @@ nav a:hover {
 }
 
 .hero h1 {
-    font-size: 46px;
+    font-size: 44px;
     line-height: 1.2;
     margin-bottom: 18px;
 }
@@ -81,13 +81,13 @@ nav a:hover {
 }
 
 .hero-content > p:not(.label) {
-    color: #d6deea;
-    margin-bottom: 28px;
+    color: #dce4ef;
+    margin-bottom: 25px;
 }
 
 .btn {
     display: inline-block;
-    padding: 12px 20px;
+    padding: 12px 18px;
     background: #f3b544;
     color: #101b30;
     border: none;
@@ -99,18 +99,17 @@ nav a:hover {
 }
 
 .btn:hover {
-    background: #e3a32d;
-    transform: translateY(-2px);
+    background: #e4a32c;
 }
 
 .kendaraan,
 .pemesanan {
-    padding: 65px 8%;
+    padding: 60px 8%;
 }
 
 .section-title {
     text-align: center;
-    margin-bottom: 35px;
+    margin-bottom: 32px;
 }
 
 .section-title h2 {
@@ -130,23 +129,23 @@ nav a:hover {
 
 .vehicle-card {
     overflow: hidden;
-    border: 1px solid #e6eaf0;
-    border-radius: 12px;
+    border: 1px solid #e5e9ef;
+    border-radius: 10px;
     background: white;
     box-shadow: 0 5px 18px rgba(16, 27, 48, 0.07);
-    transition: 0.2s;
+    transition: transform 0.2s;
 }
 
 .vehicle-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 24px rgba(16, 27, 48, 0.12);
+    transform: translateY(-4px);
 }
 
 .vehicle-card img {
-    width: 100%;
-    height: 170px;
-    object-fit: cover;
     display: block;
+    width: 100%;
+    height: 190px;
+    object-fit: contain;
+    background: #f5f7fa;
 }
 
 .vehicle-info {
@@ -155,7 +154,6 @@ nav a:hover {
 
 .vehicle-info h3 {
     font-size: 18px;
-    margin-bottom: 3px;
 }
 
 .category {
@@ -164,15 +162,15 @@ nav a:hover {
 }
 
 .price {
-    margin: 15px 0;
+    margin: 14px 0;
+    color: #bd841b;
     font-size: 19px;
     font-weight: bold;
-    color: #c48a1e;
 }
 
 .price span {
-    font-size: 12px;
     color: #687386;
+    font-size: 12px;
     font-weight: normal;
 }
 
@@ -187,10 +185,10 @@ nav a:hover {
 
 form {
     max-width: 520px;
-    margin: 0 auto;
+    margin: auto;
     padding: 28px;
     background: white;
-    border-radius: 12px;
+    border-radius: 10px;
     box-shadow: 0 5px 20px rgba(16, 27, 48, 0.07);
 }
 
@@ -211,8 +209,8 @@ form select {
     padding: 12px;
     border: 1px solid #d8dee8;
     border-radius: 6px;
-    font-size: 14px;
     background: white;
+    font-size: 14px;
 }
 
 form input:focus,
@@ -232,8 +230,8 @@ form select:focus {
 }
 
 .total strong {
-    font-size: 21px;
     color: #bd841b;
+    font-size: 21px;
 }
 
 .btn-submit {
@@ -242,22 +240,22 @@ form select:focus {
 }
 
 footer {
-    padding: 35px 8%;
+    padding: 32px 8%;
     text-align: center;
     background: #101b30;
     color: white;
 }
 
 footer p {
-    color: #d6deea;
-    font-size: 14px;
     margin-top: 8px;
+    color: #dce4ef;
+    font-size: 14px;
 }
 
 footer .copyright {
-    margin-top: 20px;
-    font-size: 12px;
+    margin-top: 18px;
     color: #aab5c5;
+    font-size: 12px;
 }
 
 @media (max-width: 1000px) {
@@ -282,8 +280,8 @@ footer .copyright {
     }
 
     .hero {
-        min-height: 360px;
-        padding: 55px 6%;
+        min-height: 340px;
+        padding: 50px 6%;
     }
 
     .hero h1 {
@@ -292,7 +290,7 @@ footer .copyright {
 
     .kendaraan,
     .pemesanan {
-        padding: 45px 5%;
+        padding: 42px 5%;
     }
 
     .section-title h2 {
@@ -304,7 +302,7 @@ footer .copyright {
     }
 
     .vehicle-card img {
-        height: 210px;
+        height: 220px;
     }
 
     form {
