@@ -1,0 +1,267 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Nurul Cake - Toko kue dengan rasa istimewa, dibuat segar setiap hari.">
+  <title>Nurul Cake | Freshly Baked With Love</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+
+  <header class="header">
+    <a class="logo" href="#home">
+      NURUL<span>CAKE.</span>
+      <small>FRESHLY BAKED WITH LOVE</small>
+    </a>
+
+    <button class="menu-toggle" id="menuToggle" aria-label="Buka menu">
+      ☰
+    </button>
+
+    <nav class="nav" id="navigation">
+      <a href="#home">Beranda</a>
+      <a href="#produk">Menu Kue</a>
+      <a href="#tentang">Tentang Kami</a>
+      <a href="#kontak">Kontak</a>
+      <a href="#produk" class="nav-button">Pesan Sekarang</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="hero-content">
+        <p class="eyebrow">HOMEMADE • FRESH • PREMIUM</p>
+        <h1>Manisnya Hari,<br><span>Indahnya Cerita.</span></h1>
+        <p class="hero-description">
+          Temukan kebahagiaan dalam setiap gigitan. Kue pilihan
+          yang dibuat dengan bahan berkualitas dan sepenuh hati.
+        </p>
+        <div class="hero-actions">
+          <a href="#produk" class="button button-primary">Jelajahi Menu ↗</a>
+          <a href="#tentang" class="button button-outline">Cerita Kami</a>
+        </div>
+        <div class="hero-note">
+          <span class="stars">★★★★★</span>
+          <span>Dibuat segar dengan penuh cinta</span>
+        </div>
+      </div>
+
+      <div class="hero-image">
+        <img src="./images/hero-cake.jpg"
+             alt="Kue spesial Nurul Cake"
+             onerror="this.onerror=null;this.src='./images/strawberry-cake.jpg'">
+        <div class="floating-card">
+          <span class="floating-icon">♡</span>
+          <div>
+            <strong>Made with Love</strong>
+            <small>Fresh every day</small>
+          </div>
+        </div>
+        <div class="image-label">A LITTLE PIECE OF HAPPINESS</div>
+      </div>
+    </section>
+
+    <section class="benefits">
+      <div class="benefit">
+        <span>✳</span>
+        <div><strong>Bahan Berkualitas</strong><small>Dipilih dengan cermat</small></div>
+      </div>
+      <div class="benefit">
+        <span>♡</span>
+        <div><strong>Dibuat Setiap Hari</strong><small>Segar untuk dinikmati</small></div>
+      </div>
+      <div class="benefit">
+        <span>♧</span>
+        <div><strong>Rasa Istimewa</strong><small>Manis di setiap momen</small></div>
+      </div>
+    </section>
+
+    <section class="products section" id="produk">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">OUR LITTLE COLLECTION</p>
+          <h2>Favorit yang <span>Bikin Bahagia.</span></h2>
+          <p class="section-description">
+            Temukan teman terbaik untuk kopi, perayaan, atau waktu santaimu.
+          </p>
+        </div>
+        <a href="#kontak" class="text-link">Pesan kue khusus ↗</a>
+      </div>
+
+      <div class="filters" id="filters">
+        <button class="filter active" data-filter="all">Semua Menu</button>
+        <button class="filter" data-filter="cake">Cake</button>
+        <button class="filter" data-filter="pastry">Pastry</button>
+        <button class="filter" data-filter="dessert">Dessert</button>
+      </div>
+
+      <div class="product-grid">
+        <article class="product-card" data-category="cake">
+          <div class="product-image">
+            <span class="product-tag">BEST SELLER</span>
+            <img src="./images/strawberry-cake.jpg" alt="Strawberry cake"
+                 loading="lazy">
+          </div>
+          <div class="product-info">
+            <p class="product-category">CAKE COLLECTION</p>
+            <h3>Strawberry Dream</h3>
+            <p>Kelembutan cake dengan rasa stroberi yang segar.</p>
+            <div class="product-bottom">
+              <strong>Rp85.000</strong>
+              <button class="order-button" data-product="Strawberry Dream" data-price="85000">＋</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="product-card" data-category="cake">
+          <div class="product-image">
+            <span class="product-tag">FAVORIT</span>
+            <img src="./images/chocolate-cake.jpg" alt="Chocolate cake"
+                 loading="lazy">
+          </div>
+          <div class="product-info">
+            <p class="product-category">CAKE COLLECTION</p>
+            <h3>Chocolate Bliss</h3>
+            <p>Cake cokelat dengan rasa pekat untuk pencinta cokelat.</p>
+            <div class="product-bottom">
+              <strong>Rp90.000</strong>
+              <button class="order-button" data-product="Chocolate Bliss" data-price="90000">＋</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="product-card" data-category="pastry">
+          <div class="product-image">
+            <img src="./images/butter-croissant.jpg" alt="Butter croissant"
+                 loading="lazy">
+          </div>
+          <div class="product-info">
+            <p class="product-category">FRESH PASTRY</p>
+            <h3>Butter Croissant</h3>
+            <p>Pastry berlapis yang renyah dengan aroma mentega.</p>
+            <div class="product-bottom">
+              <strong>Rp25.000</strong>
+              <button class="order-button" data-product="Butter Croissant" data-price="25000">＋</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="product-card" data-category="dessert">
+          <div class="product-image">
+            <span class="product-tag">CREAMY</span>
+            <img src="./images/tiramisu-cup.jpg" alt="Tiramisu cup"
+                 loading="lazy">
+          </div>
+          <div class="product-info">
+            <p class="product-category">SWEET DESSERT</p>
+            <h3>Tiramisu Cup</h3>
+            <p>Perpaduan krim lembut dan cita rasa kopi yang khas.</p>
+            <div class="product-bottom">
+              <strong>Rp30.000</strong>
+              <button class="order-button" data-product="Tiramisu Cup" data-price="30000">＋</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="product-card" data-category="pastry">
+          <div class="product-image">
+            <img src="./images/cinnamon-roll.jpg" alt="Cinnamon roll"
+                 loading="lazy">
+          </div>
+          <div class="product-info">
+            <p class="product-category">FRESH PASTRY</p>
+            <h3>Cinnamon Roll</h3>
+            <p>Roti gulung lembut dengan aroma kayu manis.</p>
+            <div class="product-bottom">
+              <strong>Rp28.000</strong>
+              <button class="order-button" data-product="Cinnamon Roll" data-price="28000">＋</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="product-card" data-category="dessert">
+          <div class="product-image">
+            <img src="./images/cheesecake.jpg" alt="Cheesecake"
+                 loading="lazy">
+          </div>
+          <div class="product-info">
+            <p class="product-category">SWEET DESSERT</p>
+            <h3>Classic Cheesecake</h3>
+            <p>Cheesecake lembut dengan rasa creamy yang seimbang.</p>
+            <div class="product-bottom">
+              <strong>Rp40.000</strong>
+              <button class="order-button" data-product="Classic Cheesecake" data-price="40000">＋</button>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="story section" id="tentang">
+      <div class="story-image">
+        <img src="./images/bakery-story.jpg"
+             alt="Suasana pembuatan kue Nurul Cake"
+             loading="lazy">
+        <div class="story-stamp">BAKED<br>WITH ♡</div>
+      </div>
+      <div class="story-content">
+        <p class="eyebrow">A STORY IN EVERY BITE</p>
+        <h2>Bukan Sekadar Kue,<br><span>Tapi Sebuah Perasaan.</span></h2>
+        <p>
+          Di Nurul Cake, kami percaya bahwa kebahagiaan sering hadir
+          dari hal-hal sederhana. Aroma kue yang baru matang, waktu
+          bersama keluarga, dan kejutan kecil untuk orang tersayang.
+        </p>
+        <p>
+          Karena itu, setiap pilihan dibuat dengan perhatian pada rasa,
+          kualitas, dan detail agar setiap momen terasa lebih istimewa.
+        </p>
+        <a href="#kontak" class="button button-primary">Kenali Kami Lebih Dekat ↗</a>
+      </div>
+    </section>
+
+    <section class="quote-section">
+      <p class="eyebrow">A LITTLE REMINDER</p>
+      <h2>“Hidup terasa lebih manis<br>ketika dibagi bersama.”</h2>
+      <span>NURUL CAKE — MADE FOR YOUR MOMENTS</span>
+    </section>
+
+    <section class="contact section" id="kontak">
+      <div class="contact-content">
+        <p class="eyebrow">LET'S MAKE IT SPECIAL</p>
+        <h2>Ada Momen yang Ingin <span>Dirayakan?</span></h2>
+        <p>
+          Pesan kue untuk ulang tahun, hadiah, kumpul keluarga,
+          atau sekadar menemani harimu.
+        </p>
+        <button class="button button-primary" id="contactOrder">
+          Hubungi Kami via WhatsApp ↗
+        </button>
+      </div>
+      <div class="contact-decoration">
+        <span>♡</span>
+        <p>Sweet moments<br>start here.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <a class="logo footer-logo" href="#home">
+      NURUL<span>CAKE.</span>
+      <small>FRESHLY BAKED WITH LOVE</small>
+    </a>
+    <p>Dibuat dengan cinta, untuk momen yang berarti.</p>
+    <a href="#home" class="back-top">Kembali ke atas ↑</a>
+    <div class="footer-bottom">
+      <span>© <span id="year"></span> NURUL Cake. All rights reserved.</span>
+      <span>Sweetness in every moment.</span>
+    </div>
+  </footer>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="./script.js"></script>
+</body>
+</html>
