@@ -1,851 +1,148 @@
 
-:root {
-  --primary: #155eef;
-  --primary-dark: #1047bd;
-  --navy: #10213b;
-  --text: #263449;
-  --muted: #6d7b8e;
-  --background: #f6f8fc;
-  --white: #ffffff;
-  --border: #e4eaf2;
-  --radius: 18px;
-  --shadow: 0 12px 35px rgba(16, 33, 59, 0.08);
-}
-
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-html {
-  scroll-behavior: smooth;
-  scroll-padding-top: 90px;
-}
-
-body {
-  font-family: "DM Sans", sans-serif;
-  color: var(--text);
-  background: var(--white);
-  line-height: 1.65;
-}
-
-img {
-  display: block;
-  width: 100%;
-}
-
-a {
-  text-decoration: none;
-  color: inherit;
-}
-
-button,
-input,
-select,
-textarea {
-  font: inherit;
-}
-
-button {
-  cursor: pointer;
-}
-
-.container {
-  width: min(1140px, 90%);
-  margin: 0 auto;
-}
-
-.header {
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  background: rgba(255, 255, 255, 0.96);
-  border-bottom: 1px solid var(--border);
-  backdrop-filter: blur(12px);
-}
-
-.navbar {
-  min-height: 76px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 24px;
-}
-
-.logo {
-  font-size: 29px;
-  font-weight: 800;
-  letter-spacing: -1.5px;
-  color: var(--navy);
-}
-
-.logo span {
-  color: var(--primary);
-}
-
-.nav-menu {
-  display: flex;
-  align-items: center;
-  gap: 30px;
-}
-
-.nav-menu a {
-  font-size: 14px;
-  font-weight: 600;
-  color: var(--muted);
-  transition: color 0.2s;
-}
-
-.nav-menu a:hover {
-  color: var(--primary);
-}
-
-.btn {
-  min-height: 46px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 12px 21px;
-  border: 1px solid transparent;
-  border-radius: 10px;
-  font-size: 14px;
-  font-weight: 700;
-  transition: transform 0.2s, background 0.2s, box-shadow 0.2s;
-}
-
-.btn:hover {
-  transform: translateY(-2px);
-}
-
-.btn-primary {
-  color: var(--white);
-  background: var(--primary);
-  box-shadow: 0 5px 14px rgba(21, 94, 239, 0.18);
-}
-
-.btn-primary:hover {
-  background: var(--primary-dark);
-}
-
-.btn-outline {
-  color: var(--navy);
-  background: var(--white);
-  border-color: var(--border);
-}
-
-.btn-small {
-  min-height: 38px;
-  padding: 8px 18px;
-  font-size: 13px;
-}
-
-.menu-toggle {
-  display: none;
-  border: 0;
-  background: transparent;
-  color: var(--navy);
-  font-size: 27px;
-}
-
-.hero {
-  padding: 76px 0 82px;
-  overflow: hidden;
-  background:
-    radial-gradient(circle at 90% 15%, rgba(21, 94, 239, 0.09), transparent 30%),
-    linear-gradient(120deg, #f9fbff, #eef4ff);
-}
-
-.hero-content {
-  display: grid;
-  grid-template-columns: 1.05fr 0.95fr;
-  align-items: center;
-  gap: 58px;
-}
-
-.eyebrow {
-  display: inline-block;
-  margin-bottom: 16px;
-  color: var(--primary);
-  font-size: 12px;
-  font-weight: 800;
-  letter-spacing: 1.5px;
-}
-
-.hero h1 {
-  margin-bottom: 22px;
-  color: var(--navy);
-  font-size: clamp(38px, 5vw, 58px);
-  line-height: 1.13;
-  letter-spacing: -2px;
-}
-
-.hero h1 span {
-  color: var(--primary);
-}
-
-.hero-text > p {
-  max-width: 540px;
-  color: var(--muted);
-  font-size: 16px;
-}
-
-.hero-actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-  margin-top: 28px;
-}
-
-.hero-stats {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 26px;
-  margin-top: 38px;
-  padding-top: 25px;
-  border-top: 1px solid #dce5f2;
-}
-
-.hero-stats div {
-  display: flex;
-  flex-direction: column;
-}
-
-.hero-stats strong {
-  color: var(--navy);
-  font-size: 15px;
-}
-
-.hero-stats span {
-  color: var(--muted);
-  font-size: 12px;
-}
-
-.hero-image {
-  position: relative;
-  min-width: 0;
-}
-
-.hero-image > img {
-  height: 400px;
-  object-fit: cover;
-  border-radius: 26px;
-  box-shadow: 0 24px 60px rgba(16, 33, 59, 0.17);
-}
-
-.floating-card {
-  position: absolute;
-  right: -18px;
-  bottom: 24px;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  max-width: 290px;
-  padding: 16px 19px;
-  border-radius: 14px;
-  background: var(--white);
-  box-shadow: var(--shadow);
-}
-
-.floating-icon {
-  display: grid;
-  width: 42px;
-  height: 42px;
-  place-items: center;
-  flex-shrink: 0;
-  color: #12805c;
-  background: #e4f8ee;
-  border-radius: 50%;
-  font-size: 22px;
-  font-weight: 800;
-}
-
-.floating-card strong {
-  color: var(--navy);
-  font-size: 14px;
-}
-
-.floating-card p {
-  color: var(--muted);
-  font-size: 11px;
-}
-
-.search-strip {
-  padding: 26px 0;
-  background: var(--navy);
-  color: var(--white);
-}
-
-.search-content {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 20px;
-}
-
-.search-label {
-  color: #a9c6ff;
-  font-size: 10px;
-  font-weight: 800;
-  letter-spacing: 1.5px;
-}
-
-.search-content h2 {
-  margin-top: 4px;
-  font-size: 21px;
-}
-
-.search-content .btn {
-  flex-shrink: 0;
-}
-
-.section {
-  padding: 86px 0;
-}
-
-.section-heading {
-  max-width: 650px;
-  margin: 0 auto 35px;
-  text-align: center;
-}
-
-.section-heading .eyebrow {
-  margin-bottom: 8px;
-}
-
-.section-heading h2,
-.booking-text h2,
-.contact-content h2 {
-  color: var(--navy);
-  font-size: clamp(27px, 3.5vw, 38px);
-  line-height: 1.25;
-  letter-spacing: -1px;
-}
-
-.section-heading p {
-  margin-top: 12px;
-  color: var(--muted);
-  font-size: 14px;
-}
-
-.filter-buttons {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin-bottom: 32px;
-}
-
-.filter-btn {
-  padding: 10px 24px;
-  color: var(--muted);
-  background: var(--white);
-  border: 1px solid var(--border);
-  border-radius: 30px;
-  font-size: 13px;
-  font-weight: 700;
-}
-
-.filter-btn.active,
-.filter-btn:hover {
-  color: var(--white);
-  background: var(--primary);
-  border-color: var(--primary);
-}
-
-.vehicle-grid {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 22px;
-}
-
-.vehicle-card {
-  min-width: 0;
-  overflow: hidden;
-  background: var(--white);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  transition: transform 0.25s, box-shadow 0.25s;
-}
-
-.vehicle-card:hover {
-  transform: translateY(-5px);
-  box-shadow: var(--shadow);
-}
-
-.vehicle-card.hidden {
-  display: none;
-}
-
-.vehicle-image {
-  position: relative;
-  overflow: hidden;
-  background: #edf2fa;
-}
-
-.vehicle-image img {
-  height: 190px;
-  object-fit: cover;
-  transition: transform 0.4s;
-}
-
-.vehicle-card:hover .vehicle-image img {
-  transform: scale(1.04);
-}
-
-.vehicle-tag {
-  position: absolute;
-  top: 13px;
-  left: 13px;
-  padding: 5px 12px;
-  color: var(--primary-dark);
-  background: rgba(255, 255, 255, 0.95);
-  border-radius: 30px;
-  font-size: 11px;
-  font-weight: 800;
-}
-
-.vehicle-info {
-  padding: 18px;
-}
-
-.vehicle-title {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 8px;
-}
-
-.vehicle-title h3 {
-  color: var(--navy);
-  font-size: 16px;
-}
-
-.vehicle-capacity {
-  flex-shrink: 0;
-  color: var(--muted);
-  font-size: 10px;
-}
-
-.vehicle-description {
-  min-height: 44px;
-  margin-top: 9px;
-  color: var(--muted);
-  font-size: 12px;
-}
-
-.vehicle-footer {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 8px;
-  margin-top: 17px;
-  padding-top: 15px;
-  border-top: 1px solid var(--border);
-}
-
-.price {
-  color: var(--primary);
-  font-size: 15px;
-  font-weight: 800;
-}
-
-.price span {
-  display: block;
-  color: var(--muted);
-  font-size: 11px;
-  font-weight: 500;
-}
-
-.price-note {
-  margin-top: 25px;
-  color: var(--muted);
-  font-size: 12px;
-  text-align: center;
-}
-
-.benefits {
-  background: var(--background);
-}
-
-.benefit-grid {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 20px;
-}
-
-.benefit-card {
-  padding: 25px 21px;
-  background: var(--white);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  text-align: center;
-}
-
-.benefit-icon {
-  display: grid;
-  width: 58px;
-  height: 58px;
-  place-items: center;
-  margin: 0 auto 17px;
-  background: #edf3ff;
-  border-radius: 16px;
-  font-size: 27px;
-}
-
-.benefit-card h3 {
-  color: var(--navy);
-  font-size: 16px;
-}
-
-.benefit-card p {
-  margin-top: 9px;
-  color: var(--muted);
-  font-size: 12px;
-}
-
-.booking-section {
-  background: var(--white);
-}
-
-.booking-layout {
-  display: grid;
-  grid-template-columns: 0.85fr 1.15fr;
-  align-items: start;
-  gap: 70px;
-}
-
-.booking-text {
-  padding-top: 25px;
-}
-
-.booking-text h2 {
-  margin-bottom: 17px;
-}
-
-.booking-text > p {
-  color: var(--muted);
-  font-size: 15px;
-}
-
-.booking-list {
-  display: grid;
-  gap: 13px;
-  margin-top: 28px;
-  list-style: none;
-  color: var(--text);
-  font-size: 14px;
-  font-weight: 600;
-}
-
-.booking-list li {
-  padding: 12px 15px;
-  background: var(--background);
-  border-radius: 10px;
-}
-
-.booking-form {
-  padding: 30px;
-  background: var(--white);
-  border: 1px solid var(--border);
-  border-radius: 20px;
-  box-shadow: var(--shadow);
-}
-
-.booking-form h3 {
-  margin-bottom: 23px;
-  color: var(--navy);
-  font-size: 22px;
-}
-
-.booking-form label {
-  display: block;
-  margin: 15px 0 7px;
-  color: var(--text);
-  font-size: 13px;
-  font-weight: 700;
-}
-
-.booking-form input,
-.booking-form select,
-.booking-form textarea {
-  width: 100%;
-  min-height: 46px;
-  padding: 11px 13px;
-  color: var(--text);
-  background: #fbfcff;
-  border: 1px solid var(--border);
-  border-radius: 9px;
-  outline: none;
-}
-
-.booking-form textarea {
-  resize: vertical;
-}
-
-.booking-form input:focus,
-.booking-form select:focus,
-.booking-form textarea:focus {
-  border-color: var(--primary);
-  box-shadow: 0 0 0 3px rgba(21, 94, 239, 0.1);
-}
-
-.estimate {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-  margin-top: 20px;
-  padding: 16px;
-  background: #edf4ff;
-  border-radius: 10px;
-}
-
-.estimate span {
-  color: var(--muted);
-  font-size: 12px;
-}
-
-.estimate strong {
-  color: var(--primary-dark);
-  font-size: 23px;
-}
-
-.estimate small {
-  color: var(--muted);
-  font-size: 11px;
-}
-
-.btn-submit {
-  width: 100%;
-  margin-top: 22px;
-}
-
-.form-note {
-  margin-top: 12px;
-  color: var(--muted);
-  font-size: 11px;
-  text-align: center;
-}
-
-.contact-section {
-  padding: 55px 0;
-  background: #eaf1ff;
-}
-
-.contact-content {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 30px;
-}
-
-.contact-content .eyebrow {
-  margin-bottom: 8px;
-}
-
-.contact-content h2 {
-  font-size: clamp(26px, 3vw, 34px);
-}
-
-.contact-content p {
-  max-width: 570px;
-  margin-top: 10px;
-  color: var(--muted);
-  font-size: 14px;
-}
-
-.btn-light {
-  flex-shrink: 0;
-  color: var(--white);
-  background: #12805c;
-}
-
-.btn-light:hover {
-  background: #0c6849;
-}
-
-.footer {
-  padding: 34px 0;
-  background: var(--navy);
-  color: var(--white);
-}
-
-.footer-content {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 15px;
-}
-
-.footer .logo {
-  color: var(--white);
-}
-
-.footer .logo span {
-  color: #76a3ff;
-}
-
-.footer p {
-  color: #c0ccdc;
-  font-size: 12px;
-}
-
-.toast {
-  position: fixed;
-  z-index: 200;
-  right: 20px;
-  bottom: 20px;
-  max-width: calc(100% - 40px);
-  padding: 13px 18px;
-  color: var(--white);
-  background: var(--navy);
-  border-radius: 10px;
-  box-shadow: var(--shadow);
-  opacity: 0;
-  pointer-events: none;
-  transform: translateY(12px);
-  transition: opacity 0.25s, transform 0.25s;
-}
-
-.toast.show {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-@media (max-width: 1000px) {
-  .hero-content {
-    gap: 30px;
+document.addEventListener("DOMContentLoaded", () => {
+  // Ganti dengan nomor WhatsApp pengelola.
+  // Gunakan kode negara 62 tanpa tanda + atau angka 0 di awal.
+  const NOMOR_WHATSAPP = "6281234567890";
+
+  const hargaKendaraan = {
+    "Honda Beat": 80000,
+    "Honda Vario": 100000,
+    "Yamaha NMAX": 150000,
+    "Toyota Avanza": 350000,
+    "Toyota Fortuner": 850000
+  };
+
+  const form = document.getElementById("bookingForm");
+  const namaInput = document.getElementById("nama");
+  const kendaraanInput = document.getElementById("kendaraan");
+  const tanggalInput = document.getElementById("tanggal");
+  const durasiInput = document.getElementById("durasi");
+  const totalHarga = document.getElementById("totalHarga");
+
+  function formatRupiah(angka) {
+    return new Intl.NumberFormat("id-ID", {
+      style: "currency",
+      currency: "IDR",
+      maximumFractionDigits: 0
+    }).format(angka);
   }
 
-  .vehicle-grid,
-  .benefit-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+  // Menghitung perkiraan harga sewa.
+  function hitungTotal() {
+    const harga = hargaKendaraan[kendaraanInput.value] || 0;
+    const durasi = Number(durasiInput.value) || 0;
+
+    totalHarga.textContent = formatRupiah(
+      harga > 0 && durasi > 0 ? harga * durasi : 0
+    );
   }
 
-  .vehicle-image img {
-    height: 230px;
-  }
+  // Filter motor matic dan mobil.
+  document.querySelectorAll("[data-filter]").forEach(button => {
+    button.addEventListener("click", () => {
+      document.querySelectorAll("[data-filter]").forEach(item => {
+        item.classList.remove("active");
+      });
 
-  .booking-layout {
-    gap: 35px;
-  }
-}
+      button.classList.add("active");
 
-@media (max-width: 760px) {
-  .navbar {
-    min-height: 68px;
-  }
+      document.querySelectorAll(".vehicle-card").forEach(card => {
+        const filter = button.dataset.filter;
 
-  .nav-menu {
-    position: absolute;
-    top: 68px;
-    right: 5%;
-    left: 5%;
-    display: none;
-    align-items: stretch;
-    flex-direction: column;
-    gap: 0;
-    padding: 12px;
-    background: var(--white);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    box-shadow: var(--shadow);
-  }
+        card.style.display =
+          filter === "semua" || card.dataset.category === filter
+            ? ""
+            : "none";
+      });
+    });
+  });
 
-  .nav-menu.open {
-    display: flex;
-  }
+  // Tombol pilih kendaraan mengisi formulir secara otomatis.
+  document.querySelectorAll("[data-vehicle]").forEach(button => {
+    button.addEventListener("click", () => {
+      kendaraanInput.value = button.dataset.vehicle;
+      hitungTotal();
 
-  .nav-menu a {
-    padding: 12px;
-  }
+      document.getElementById("booking").scrollIntoView({
+        behavior: "smooth"
+      });
+    });
+  });
 
-  .nav-button {
-    display: none;
-  }
+  // Tanggal sewa minimal hari ini.
+  const hariIni = new Date();
+  tanggalInput.min = [
+    hariIni.getFullYear(),
+    String(hariIni.getMonth() + 1).padStart(2, "0"),
+    String(hariIni.getDate()).padStart(2, "0")
+  ].join("-");
 
-  .menu-toggle {
-    display: block;
-  }
+  kendaraanInput.addEventListener("change", hitungTotal);
+  durasiInput.addEventListener("input", hitungTotal);
 
-  .hero {
-    padding: 52px 0 60px;
-  }
+  // Mengirim detail pesanan ke WhatsApp.
+  form.addEventListener("submit", event => {
+    event.preventDefault();
 
-  .hero-content {
-    grid-template-columns: 1fr;
-  }
+    if (!form.reportValidity()) return;
 
-  .hero h1 {
-    font-size: clamp(36px, 9vw, 49px);
-  }
+    const nama = namaInput.value.trim();
+    const kendaraan = kendaraanInput.value;
+    const tanggal = tanggalInput.value;
+    const durasi = Number(durasiInput.value);
+    const harga = hargaKendaraan[kendaraan];
 
-  .hero-image > img {
-    height: 300px;
-  }
+    if (!harga || durasi < 1 || durasi > 30) {
+      alert("Silakan periksa pilihan kendaraan dan durasi sewa.");
+      return;
+    }
 
-  .floating-card {
-    right: 10px;
-    bottom: 12px;
-  }
+    if (!tanggal || tanggal < tanggalInput.min) {
+      alert("Silakan pilih tanggal sewa yang benar.");
+      return;
+    }
 
-  .search-content {
-    align-items: flex-start;
-    flex-direction: column;
-  }
+    const tanggalFormat = new Date(tanggal + "T00:00:00")
+      .toLocaleDateString("id-ID", {
+        day: "numeric",
+        month: "long",
+        year: "numeric"
+      });
 
-  .section {
-    padding: 65px 0;
-  }
+    const total = harga * durasi;
 
-  .booking-layout {
-    grid-template-columns: 1fr;
-    gap: 30px;
-  }
+    const pesan = [
+      "Halo, saya ingin memesan kendaraan dari RentGo.",
+      "",
+      "Nama: " + nama,
+      "Kendaraan: " + kendaraan,
+      "Tanggal sewa: " + tanggalFormat,
+      "Durasi: " + durasi + " hari",
+      "Perkiraan total: " + formatRupiah(total),
+      "",
+      "Mohon informasi lebih lanjut. Terima kasih."
+    ].join("\n");
 
-  .booking-text {
-    padding-top: 0;
-  }
+    // Jangan mengarahkan pesanan ke nomor contoh.
+    if (
+      !NOMOR_WHATSAPP ||
+      NOMOR_WHATSAPP === "6281234567890"
+    ) {
+      alert(
+        "Website siap digunakan. Untuk mengirim pesanan, " +
+        "ganti NOMOR_WHATSAPP di file script.js dengan nomor pengelola."
+      );
+      return;
+    }
 
-  .contact-content {
-    align-items: flex-start;
-    flex-direction: column;
-  }
+    const url =
+      "https://wa.me/" +
+      NOMOR_WHATSAPP +
+      "?text=" +
+      encodeURIComponent(pesan);
 
-  .footer-content {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-}
+    window.open(url, "_blank", "noopener,noreferrer");
+  });
 
-@media (max-width: 480px) {
-  .container {
-    width: 92%;
-  }
-
-  .vehicle-grid,
-  .benefit-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .vehicle-image img {
-    height: 230px;
-  }
-
-  .hero-stats {
-    gap: 18px;
-  }
-
-  .hero-actions .btn {
-    width: 100%;
-  }
-
-  .booking-form {
-    padding: 20px;
-  }
-
-  .search-content h2 {
-    font-size: 18px;
-  }
-}
+  hitungTotal();
+});
