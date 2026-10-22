@@ -4,7 +4,7 @@
 // GANTI dengan nomor WhatsApp pengelola rental.
 // Gunakan kode negara 62, tanpa tanda + atau angka 0 di depan.
 // Contoh: 6281234567890
-const NOMOR_WHATSAPP = "6281234567890";
+const NOMOR_WHATSAPP = "6282133714451";
 
 // Harga sewa per hari
 const HARGA_KENDARAAN = {
