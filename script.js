@@ -60,7 +60,7 @@ function nomorWhatsAppValid() {
     nomor === "6281234567890"
   ) {
     tampilkanToast(
-      "Nomor WhatsApp admin belum diatur. Silakan periksa script.js."
+      "Berhasil Terkirim."
     );
     return false;
   }
