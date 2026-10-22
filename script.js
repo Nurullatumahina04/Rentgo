@@ -1,228 +1,377 @@
 
-"use strict";
+/* =========================================
+   RENTGO - SCRIPT.JS
+   ========================================= */
 
-// GANTI dengan nomor WhatsApp pengelola rental.
-// Gunakan kode negara 62, tanpa tanda + atau angka 0 di depan.
-// Contoh: 6281234567890
+// Ganti dengan nomor WhatsApp admin yang aktif.
+// Format: kode negara + nomor, tanpa tanda + atau spasi.
 const NOMOR_WHATSAPP = "6281234567890";
 
-// Harga sewa per hari
+// Harga sewa kendaraan per hari
 const HARGA_KENDARAAN = {
-  "Motor Matic": 100000,
-  "Motor Sport": 200000,
-  "Mobil Keluarga": 500000,
-  "Mobil Premium": 800000
+    "Motor Matic": 100000,
+    "Motor Sport": 200000,
+    "Mobil Keluarga": 500000,
+    "Mobil Premium": 800000
 };
 
-// Format angka menjadi Rupiah
+// =========================================
+// FORMAT RUPIAH
+// =========================================
 function formatRupiah(angka) {
-  return new Intl.NumberFormat("id-ID", {
-    style: "currency",
-    currency: "IDR",
-    maximumFractionDigits: 0
-  }).format(angka);
+    return new Intl.NumberFormat("id-ID", {
+        style: "currency",
+        currency: "IDR",
+        minimumFractionDigits: 0,
+        maximumFractionDigits: 0
+    }).format(angka);
 }
 
-// Menampilkan notifikasi
+// =========================================
+// NOTIFIKASI TOAST
+// =========================================
 let toastTimer;
 
 function tampilkanToast(pesan) {
-  const toast = document.getElementById("toast");
+    const toast = document.getElementById("toast");
 
-  toast.textContent = pesan;
-  toast.classList.add("show");
+    if (!toast) {
+        alert(pesan);
+        return;
+    }
 
-  clearTimeout(toastTimer);
+    toast.textContent = pesan;
+    toast.classList.add("show");
 
-  toastTimer = setTimeout(() => {
-    toast.classList.remove("show");
-  }, 3000);
+    clearTimeout(toastTimer);
+
+    toastTimer = setTimeout(() => {
+        toast.classList.remove("show");
+    }, 4000);
 }
 
-// Memeriksa dan membuka WhatsApp
+// =========================================
+// VALIDASI NOMOR WHATSAPP
+// =========================================
+function nomorWhatsAppValid() {
+    const nomor = NOMOR_WHATSAPP.replace(/\D/g, "");
+
+    if (
+        !/^\d{10,15}$/.test(nomor) ||
+        nomor === "6281234567890"
+    ) {
+        tampilkanToast(
+            "Nomor WhatsApp admin belum diatur. Silakan periksa script.js."
+        );
+        return false;
+    }
+
+    return true;
+}
+
+// =========================================
+// BUKA WHATSAPP
+// =========================================
 function bukaWhatsApp(pesan) {
-  const nomorValid = /^\d{10,15}$/.test(NOMOR_WHATSAPP);
+    if (!nomorWhatsAppValid()) {
+        return;
+    }
 
-  if (!nomorValid || NOMOR_WHATSAPP === "6281234567890") {
+    const nomor = NOMOR_WHATSAPP.replace(/\D/g, "");
+    const url =
+        "https://wa.me/" +
+        nomor +
+        "?text=" +
+        encodeURIComponent(pesan);
+
+    const jendelaWhatsApp = window.open(url, "_blank");
+
+    if (!jendelaWhatsApp) {
+        tampilkanToast(
+            "WhatsApp tidak terbuka. Izinkan pop-up pada browser, lalu coba lagi."
+        );
+        return;
+    }
+
+    jendelaWhatsApp.opener = null;
+
     tampilkanToast(
-      "Atur nomor WhatsApp pengelola terlebih dahulu di script.js."
+        "Pesanan siap dikirim! Tekan tombol Kirim di WhatsApp untuk menyelesaikan pesanan."
     );
-    return;
-  }
-
-  const url =
-    "https://wa.me/" +
-    NOMOR_WHATSAPP +
-    "?text=" +
-    encodeURIComponent(pesan);
-
-  window.open(url, "_blank", "noopener,noreferrer");
 }
 
-// Filter kendaraan: semua, motor, atau mobil
-const filterButtons = document.querySelectorAll(".filter-btn");
-const vehicleCards = document.querySelectorAll(".vehicle-card");
+// =========================================
+// FILTER KENDARAAN
+// =========================================
+const tombolFilter = document.querySelectorAll(".filter-btn");
+const kartuKendaraan = document.querySelectorAll(".vehicle-card");
 
-filterButtons.forEach((button) => {
-  button.addEventListener("click", () => {
-    const filter = button.dataset.filter;
+tombolFilter.forEach((tombol) => {
+    tombol.addEventListener("click", () => {
+        const filter = tombol.dataset.filter;
 
-    filterButtons.forEach((item) => {
-      item.classList.toggle("active", item === button);
+        // Aktifkan tombol filter yang dipilih
+        tombolFilter.forEach((item) => {
+            item.classList.remove("active");
+        });
+
+        tombol.classList.add("active");
+
+        // Tampilkan kendaraan sesuai kategori
+        kartuKendaraan.forEach((kartu) => {
+            const tipe = kartu.dataset.type;
+
+            if (filter === "semua" || tipe === filter) {
+                kartu.classList.remove("hidden");
+            } else {
+                kartu.classList.add("hidden");
+            }
+        });
     });
-
-    vehicleCards.forEach((card) => {
-      const cocok =
-        filter === "semua" || card.dataset.type === filter;
-
-      card.classList.toggle("hidden", !cocok);
-    });
-  });
 });
 
-// Menu navigasi untuk layar HP
+// =========================================
+// MENU NAVIGASI MOBILE
+// =========================================
 const menuToggle = document.getElementById("menuToggle");
 const navMenu = document.getElementById("navMenu");
 
-menuToggle.addEventListener("click", () => {
-  const terbuka = navMenu.classList.toggle("open");
+if (menuToggle && navMenu) {
+    menuToggle.addEventListener("click", () => {
+        const sedangTerbuka = navMenu.classList.toggle("open");
 
-  menuToggle.setAttribute("aria-expanded", String(terbuka));
-  menuToggle.setAttribute(
-    "aria-label",
-    terbuka ? "Tutup menu" : "Buka menu"
-  );
+        menuToggle.setAttribute(
+            "aria-expanded",
+            String(sedangTerbuka)
+        );
 
-  menuToggle.textContent = terbuka ? "✕" : "☰";
-});
+        menuToggle.textContent = sedangTerbuka ? "✕" : "☰";
+    });
 
-navMenu.querySelectorAll("a").forEach((link) => {
-  link.addEventListener("click", () => {
-    navMenu.classList.remove("open");
-    menuToggle.textContent = "☰";
-    menuToggle.setAttribute("aria-expanded", "false");
-  });
-});
+    // Tutup menu setelah tautan navigasi diklik
+    navMenu.querySelectorAll("a").forEach((tautan) => {
+        tautan.addEventListener("click", () => {
+            navMenu.classList.remove("open");
+            menuToggle.setAttribute("aria-expanded", "false");
+            menuToggle.textContent = "☰";
+        });
+    });
+}
 
-// Elemen formulir
+// =========================================
+// FORM PEMESANAN
+// =========================================
 const bookingForm = document.getElementById("bookingForm");
 const kendaraanSelect = document.getElementById("kendaraanSelect");
 const tanggalInput = document.getElementById("tanggal");
 const durasiInput = document.getElementById("durasi");
 const estimasiHarga = document.getElementById("estimasiHarga");
 
-// Mengatur tanggal minimum ke hari ini
+// =========================================
+// TANGGAL HARI INI
+// =========================================
 function tanggalHariIni() {
-  const sekarang = new Date();
-  const tahun = sekarang.getFullYear();
-  const bulan = String(sekarang.getMonth() + 1).padStart(2, "0");
-  const hari = String(sekarang.getDate()).padStart(2, "0");
+    const sekarang = new Date();
 
-  return `${tahun}-${bulan}-${hari}`;
+    const tahun = sekarang.getFullYear();
+    const bulan = String(sekarang.getMonth() + 1).padStart(2, "0");
+    const tanggal = String(sekarang.getDate()).padStart(2, "0");
+
+    return `${tahun}-${bulan}-${tanggal}`;
 }
 
-tanggalInput.min = tanggalHariIni();
+// Cegah pemilihan tanggal yang sudah lewat
+if (tanggalInput) {
+    tanggalInput.min = tanggalHariIni();
+}
 
-// Menghitung total biaya berdasarkan kendaraan dan durasi
+// =========================================
+// HITUNG ESTIMASI HARGA
+// =========================================
 function hitungEstimasi() {
-  const kendaraan = kendaraanSelect.value;
-  const durasi = Number(durasiInput.value);
+    if (!kendaraanSelect || !durasiInput || !estimasiHarga) {
+        return 0;
+    }
 
-  if (
-    !kendaraan ||
-    !HARGA_KENDARAAN[kendaraan] ||
-    !Number.isInteger(durasi) ||
-    durasi < 1 ||
-    durasi > 30
-  ) {
-    estimasiHarga.textContent = "Pilih kendaraan";
-    return;
-  }
+    const kendaraan = kendaraanSelect.value;
+    const durasi = Number(durasiInput.value);
 
-  const total = HARGA_KENDARAAN[kendaraan] * durasi;
-  estimasiHarga.textContent = formatRupiah(total);
+    if (
+        !kendaraan ||
+        !HARGA_KENDARAAN[kendaraan] ||
+        !Number.isInteger(durasi) ||
+        durasi < 1 ||
+        durasi > 30
+    ) {
+        estimasiHarga.textContent = formatRupiah(0);
+        return 0;
+    }
+
+    const total = HARGA_KENDARAAN[kendaraan] * durasi;
+
+    estimasiHarga.textContent = formatRupiah(total);
+
+    return total;
 }
 
-kendaraanSelect.addEventListener("change", hitungEstimasi);
-durasiInput.addEventListener("input", hitungEstimasi);
+if (kendaraanSelect) {
+    kendaraanSelect.addEventListener("change", hitungEstimasi);
+}
 
-// Tombol sewa pada setiap kartu kendaraan
-document.querySelectorAll(".rent-button").forEach((button) => {
-  button.addEventListener("click", () => {
-    kendaraanSelect.value = button.dataset.vehicle;
-    hitungEstimasi();
+if (durasiInput) {
+    durasiInput.addEventListener("input", hitungEstimasi);
+}
 
-    document.getElementById("pemesanan").scrollIntoView({
-      behavior: "smooth"
+// =========================================
+// TOMBOL SEWA KENDARAAN
+// =========================================
+document.querySelectorAll(".rent-button").forEach((tombol) => {
+    tombol.addEventListener("click", () => {
+        const kendaraan = tombol.dataset.vehicle;
+
+        if (kendaraanSelect && kendaraan) {
+            kendaraanSelect.value = kendaraan;
+            hitungEstimasi();
+        }
+
+        const bagianPemesanan = document.getElementById("pemesanan");
+
+        if (bagianPemesanan) {
+            bagianPemesanan.scrollIntoView({
+                behavior: "smooth",
+                block: "start"
+            });
+        }
     });
-  });
 });
 
-// Mengirim pesanan melalui WhatsApp
-bookingForm.addEventListener("submit", (event) => {
-  event.preventDefault();
+// =========================================
+// KIRIM FORM PEMESANAN KE WHATSAPP
+// =========================================
+if (bookingForm) {
+    bookingForm.addEventListener("submit", (event) => {
+        event.preventDefault();
 
-  if (!bookingForm.reportValidity()) {
-    return;
-  }
+        const namaInput = document.getElementById("nama");
+        const teleponInput = document.getElementById("telepon");
+        const catatanInput = document.getElementById("catatan");
 
-  const nama = document.getElementById("nama").value.trim();
-  const telepon = document.getElementById("telepon").value.trim();
-  const kendaraan = kendaraanSelect.value;
-  const tanggal = tanggalInput.value;
-  const durasi = Number(durasiInput.value);
-  const catatan = document.getElementById("catatan").value.trim();
+        const nama = namaInput?.value.trim() || "";
+        const telepon = teleponInput?.value.trim() || "";
+        const kendaraan = kendaraanSelect?.value || "";
+        const tanggal = tanggalInput?.value || "";
+        const durasi = Number(durasiInput?.value);
+        const catatan = catatanInput?.value.trim() || "";
 
-  if (!nama || !telepon || !kendaraan || !tanggal) {
-    tampilkanToast("Mohon lengkapi data pemesanan.");
-    return;
-  }
+        // Validasi nama
+        if (!nama) {
+            tampilkanToast("Silakan masukkan nama lengkap Anda.");
+            namaInput?.focus();
+            return;
+        }
 
-  if (!/^[0-9+\s()-]{8,20}$/.test(telepon)) {
-    tampilkanToast("Periksa kembali nomor WhatsApp kamu.");
-    return;
-  }
+        // Validasi nomor telepon
+        if (!/^[0-9+\s()-]{8,20}$/.test(telepon)) {
+            tampilkanToast("Silakan masukkan nomor telepon yang valid.");
+            teleponInput?.focus();
+            return;
+        }
 
-  if (tanggal < tanggalHariIni()) {
-    tampilkanToast("Tanggal sewa tidak boleh di masa lalu.");
-    return;
-  }
+        // Validasi kendaraan
+        if (!kendaraan || !HARGA_KENDARAAN[kendaraan]) {
+            tampilkanToast("Silakan pilih kendaraan terlebih dahulu.");
+            kendaraanSelect?.focus();
+            return;
+        }
 
-  if (!Number.isInteger(durasi) || durasi < 1 || durasi > 30) {
-    tampilkanToast("Durasi sewa harus antara 1 sampai 30 hari.");
-    return;
-  }
+        // Validasi tanggal
+        if (!tanggal) {
+            tampilkanToast("Silakan pilih tanggal sewa.");
+            tanggalInput?.focus();
+            return;
+        }
 
-  const total = HARGA_KENDARAAN[kendaraan] * durasi;
+        if (tanggal < tanggalHariIni()) {
+            tampilkanToast("Tanggal sewa tidak boleh sudah lewat.");
+            tanggalInput?.focus();
+            return;
+        }
 
-  const pesan = [
-    "Halo RentGo, saya ingin memesan kendaraan.",
-    "",
-    "Nama: " + nama,
-    "Nomor WhatsApp penyewa: " + telepon,
-    "Kendaraan: " + kendaraan,
-    "Tanggal mulai sewa: " + tanggal,
-    "Durasi sewa: " + durasi + " hari",
-    "Harga per hari: " + formatRupiah(HARGA_KENDARAAN[kendaraan]),
-    "Estimasi total: " + formatRupiah(total),
-    "Catatan: " + (catatan || "-"),
-    "",
-    "Mohon konfirmasi ketersediaan kendaraan, harga, dan persyaratan sewa. Terima kasih."
-  ].join("\n");
+        // Validasi durasi sewa
+        if (
+            !Number.isInteger(durasi) ||
+            durasi < 1 ||
+            durasi > 30
+        ) {
+            tampilkanToast("Durasi sewa harus antara 1 sampai 30 hari.");
+            durasiInput?.focus();
+            return;
+        }
 
-  bukaWhatsApp(pesan);
-});
+        // Hitung harga
+        const hargaPerHari = HARGA_KENDARAAN[kendaraan];
+        const totalHarga = hargaPerHari * durasi;
 
-// Tombol kontak WhatsApp
-document.getElementById("contactButton").addEventListener("click", () => {
-  bukaWhatsApp(
-    "Halo RentGo, saya ingin bertanya tentang layanan rental motor dan mobil."
-  );
-});
+        // Format tanggal untuk pesan WhatsApp
+        const tanggalFormat = new Date(
+            `${tanggal}T00:00:00`
+        ).toLocaleDateString("id-ID", {
+            day: "numeric",
+            month: "long",
+            year: "numeric"
+        });
 
-// Tahun otomatis pada footer
-document.getElementById("year").textContent =
-  new Date().getFullYear();
+        // Susun pesan pemesanan
+        const pesan = [
+            "🔔 *PESANAN RENTAL KENDARAAN - RENTGO*",
+            "",
+            "Halo Admin RentGo, saya ingin mengajukan pemesanan kendaraan.",
+            "",
+            "📋 *DETAIL PEMESANAN*",
+            "Nama: " + nama,
+            "Nomor Telepon: " + telepon,
+            "Kendaraan: " + kendaraan,
+            "Tanggal Sewa: " + tanggalFormat,
+            "Durasi Sewa: " + durasi + " hari",
+            "Harga per Hari: " + formatRupiah(hargaPerHari),
+            "Total Estimasi: " + formatRupiah(totalHarga),
+            "",
+            "Catatan: " + (catatan || "Tidak ada"),
+            "",
+            "Mohon konfirmasi ketersediaan kendaraan dan detail pembayaran.",
+            "",
+            "Terima kasih.",
+            "— Pemesanan melalui website RentGo"
+        ].join("\n");
 
-// Inisialisasi harga saat halaman dibuka
-hitungEstimasi();
+        // Buka WhatsApp dengan pesan yang sudah disiapkan
+        bukaWhatsApp(pesan);
+    });
+}
+
+// =========================================
+// TOMBOL HUBUNGI KAMI
+// =========================================
+const contactButton = document.getElementById("contactButton");
+
+if (contactButton) {
+    contactButton.addEventListener("click", () => {
+        const pesan =
+            "Halo Admin RentGo, saya ingin bertanya tentang layanan rental kendaraan.";
+
+        bukaWhatsApp(pesan);
+    });
+}
+
+// =========================================
+// TAHUN OTOMATIS PADA FOOTER
+// =========================================
+const yearElement = document.getElementById("year");
+
+if (yearElement) {
+    yearElement.textContent = new Date().getFullYear();
+}
+
+// =========================================
+// SELESAI
+// =========================================
