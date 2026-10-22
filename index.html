@@ -4,280 +4,995 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Rental motor dan mobil dengan harga terjangkau, kendaraan nyaman, dan pemesanan mudah.">
-  <title> - Rental Motor & Mobil</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="./style.css">
+  <meta name="description" content="RentGo - Simulasi penyewaan motor dan mobil dengan mudah.">
+  <title>RentGo | Premium Vehicle Rental</title>
+
+  <style>
+    :root {
+      --navy: #101b32;
+      --navy-light: #192944;
+      --gold: #d9b36c;
+      --cream: #f7f5f0;
+      --white: #ffffff;
+      --muted: #778197;
+      --border: #e9e8e3;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--cream);
+      color: var(--navy);
+      line-height: 1.6;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    button, input, select {
+      font: inherit;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    .container {
+      width: min(1160px, 90%);
+      margin: auto;
+    }
+
+    header {
+      background: var(--navy);
+      color: white;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      box-shadow: 0 3px 18px #00000015;
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      min-height: 76px;
+      gap: 20px;
+    }
+
+    .logo {
+      font-size: 27px;
+      font-weight: 800;
+      letter-spacing: -1px;
+    }
+
+    .logo span {
+      color: var(--gold);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 27px;
+      align-items: center;
+      font-size: 14px;
+    }
+
+    .nav-links a:hover {
+      color: var(--gold);
+    }
+
+    .button {
+      display: inline-block;
+      padding: 12px 20px;
+      border: 0;
+      border-radius: 8px;
+      background: var(--gold);
+      color: var(--navy);
+      font-weight: 700;
+      transition: 0.2s;
+    }
+
+    .button:hover {
+      transform: translateY(-2px);
+      filter: brightness(1.05);
+    }
+
+    .button-outline {
+      border: 1px solid #ffffff70;
+      color: white;
+      background: transparent;
+    }
+
+    .hero {
+      background:
+        linear-gradient(90deg, #101b32 0%, #101b32ed 42%, #101b3270 100%),
+        url("https://images.unsplash.com/photo-1558981806-ec527fa84c39?auto=format&fit=crop&w=1800&q=85")
+        center 55% / cover;
+      color: white;
+      min-height: 540px;
+      display: flex;
+      align-items: center;
+    }
+
+    .hero-content {
+      max-width: 650px;
+      padding: 75px 0;
+    }
+
+    .eyebrow {
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      color: var(--gold);
+      font-weight: 700;
+      font-size: 12px;
+      margin-bottom: 16px;
+    }
+
+    h1 {
+      font-size: clamp(38px, 5.4vw, 66px);
+      line-height: 1.12;
+      letter-spacing: -2px;
+      margin-bottom: 20px;
+    }
+
+    .hero p {
+      max-width: 520px;
+      color: #e0e5ef;
+      margin-bottom: 28px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .trust-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 25px;
+      margin-top: 38px;
+      color: #e3e6ed;
+      font-size: 13px;
+    }
+
+    .trust-row strong {
+      color: var(--gold);
+    }
+
+    .section {
+      padding: 80px 0;
+    }
+
+    .section-heading {
+      text-align: center;
+      max-width: 650px;
+      margin: 0 auto 35px;
+    }
+
+    .section-heading h2 {
+      font-size: clamp(28px, 4vw, 40px);
+      letter-spacing: -1px;
+      margin-bottom: 10px;
+    }
+
+    .section-heading p {
+      color: var(--muted);
+    }
+
+    .filters {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 30px;
+    }
+
+    .filter-btn {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 30px;
+      padding: 10px 22px;
+      color: var(--navy);
+    }
+
+    .filter-btn.active,
+    .filter-btn:hover {
+      background: var(--navy);
+      color: white;
+      border-color: var(--navy);
+    }
+
+    .vehicle-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 24px;
+    }
+
+    .vehicle-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 15px;
+      overflow: hidden;
+      transition: transform 0.25s, box-shadow 0.25s;
+    }
+
+    .vehicle-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 35px #14213a12;
+    }
+
+    .vehicle-image {
+      height: 225px;
+      width: 100%;
+      object-fit: cover;
+      display: block;
+      background: #e7e8e9;
+    }
+
+    .vehicle-body {
+      padding: 20px;
+    }
+
+    .vehicle-type {
+      color: #94713a;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+    }
+
+    .vehicle-body h3 {
+      margin: 5px 0 7px;
+      font-size: 21px;
+    }
+
+    .vehicle-description {
+      color: var(--muted);
+      font-size: 13px;
+      margin-bottom: 18px;
+    }
+
+    .vehicle-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      border-top: 1px solid var(--border);
+      padding-top: 16px;
+    }
+
+    .price {
+      font-size: 18px;
+      font-weight: 800;
+    }
+
+    .price small {
+      display: block;
+      font-size: 11px;
+      font-weight: 400;
+      color: var(--muted);
+    }
+
+    .choose-btn {
+      background: var(--navy);
+      color: white;
+      border: 0;
+      border-radius: 7px;
+      padding: 10px 13px;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .choose-btn:hover {
+      background: #263b5c;
+    }
+
+    .features {
+      background: var(--navy);
+      color: white;
+    }
+
+    .features .section-heading p {
+      color: #c3cbd9;
+    }
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 25px;
+    }
+
+    .feature {
+      padding: 25px;
+      border: 1px solid #ffffff20;
+      border-radius: 12px;
+      background: #ffffff08;
+    }
+
+    .feature-icon {
+      font-size: 29px;
+      margin-bottom: 12px;
+    }
+
+    .feature h3 {
+      color: var(--gold);
+      margin-bottom: 7px;
+    }
+
+    .feature p {
+      color: #d2d8e3;
+      font-size: 14px;
+    }
+
+    .booking-section {
+      background: #eeece5;
+    }
+
+    .booking-layout {
+      display: grid;
+      grid-template-columns: 0.8fr 1.2fr;
+      gap: 45px;
+      align-items: start;
+    }
+
+    .booking-info h2 {
+      font-size: 38px;
+      line-height: 1.2;
+      margin-bottom: 16px;
+    }
+
+    .booking-info p {
+      color: var(--muted);
+      margin-bottom: 20px;
+    }
+
+    .demo-note {
+      border-left: 3px solid var(--gold);
+      background: white;
+      padding: 15px;
+      border-radius: 0 8px 8px 0;
+      font-size: 13px;
+    }
+
+    .booking-form {
+      background: white;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 10px 35px #1722380b;
+    }
+
+    .booking-form h3 {
+      font-size: 23px;
+      margin-bottom: 20px;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .form-group {
+      margin-bottom: 17px;
+    }
+
+    .form-group.full {
+      grid-column: 1 / -1;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 13px;
+      font-weight: 700;
+      margin-bottom: 7px;
+    }
+
+    .form-group input,
+    .form-group select {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #dfe2e8;
+      border-radius: 7px;
+      outline: none;
+      background: white;
+      color: var(--navy);
+    }
+
+    .form-group input:focus,
+    .form-group select:focus {
+      border-color: #a88446;
+      box-shadow: 0 0 0 3px #d9b36c25;
+    }
+
+    .total-box {
+      background: var(--navy);
+      color: white;
+      padding: 18px;
+      border-radius: 9px;
+      margin: 3px 0 18px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .total-box span {
+      color: #d7ddea;
+      font-size: 13px;
+    }
+
+    .total-box strong {
+      color: var(--gold);
+      font-size: 21px;
+    }
+
+    .submit-btn {
+      width: 100%;
+      padding: 14px;
+      border-radius: 8px;
+      border: 0;
+      background: var(--gold);
+      color: var(--navy);
+      font-weight: 800;
+    }
+
+    .submit-btn:hover {
+      filter: brightness(1.04);
+    }
+
+    #hasilSimulasi {
+      display: none;
+      margin-top: 20px;
+      background: #edf8f0;
+      border: 1px solid #b9e4c3;
+      color: #1d6331;
+      padding: 17px;
+      border-radius: 9px;
+      white-space: pre-line;
+      font-size: 14px;
+    }
+
+    footer {
+      background: #0b1426;
+      color: white;
+      padding: 30px 0;
+    }
+
+    .footer-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    footer p {
+      color: #b6c0d0;
+      font-size: 13px;
+    }
+
+    @media (max-width: 850px) {
+      .vehicle-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .booking-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .nav-links {
+        gap: 14px;
+      }
+
+      .nav-links .nav-optional {
+        display: none;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .navbar {
+        min-height: 66px;
+      }
+
+      .logo {
+        font-size: 24px;
+      }
+
+      .nav-links {
+        gap: 10px;
+        font-size: 12px;
+      }
+
+      .nav-links .button {
+        padding: 9px 11px;
+      }
+
+      .hero {
+        min-height: 490px;
+      }
+
+      .hero-content {
+        padding: 55px 0;
+      }
+
+      .trust-row {
+        gap: 12px;
+      }
+
+      .section {
+        padding: 58px 0;
+      }
+
+      .vehicle-grid,
+      .feature-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .vehicle-image {
+        height: 240px;
+      }
+
+      .form-grid {
+        grid-template-columns: 1fr;
+        gap: 0;
+      }
+
+      .booking-form {
+        padding: 21px;
+      }
+
+      .booking-info h2 {
+        font-size: 31px;
+      }
+    }
+  </style>
 </head>
+
 <body>
 
-  <header class="header">
-    <div class="container navbar">
-      <a href="#beranda" class="logo">Rent<span>Go.</span></a>
+<header>
+  <div class="container navbar">
+    <a href="#" class="logo">Rent<span>Go.</span></a>
 
-      <nav id="navMenu" class="nav-menu">
-        <a href="#beranda">Beranda</a>
-        <a href="#kendaraan">Kendaraan</a>
-        <a href="#keunggulan">Keunggulan</a>
-        <a href="#kontak">Kontak</a>
-      </nav>
+    <nav class="nav-links">
+      <a href="#beranda">Beranda</a>
+      <a href="#kendaraan">Kendaraan</a>
+      <a href="#keunggulan" class="nav-optional">Keunggulan</a>
+      <a href="#booking" class="button">Pesan Sekarang</a>
+    </nav>
+  </div>
+</header>
 
-      <a href="#pemesanan" class="btn btn-primary nav-button">Pesan Sekarang</a>
-      <button class="menu-toggle" id="menuToggle" aria-label="Buka menu">☰</button>
+<main>
+  <section class="hero" id="beranda">
+    <div class="container">
+      <div class="hero-content">
+        <div class="eyebrow">Premium Vehicle Rental</div>
+
+        <h1>Perjalanan Hebat Dimulai dari Kendaraan yang Tepat.</h1>
+
+        <p>
+          Pilih motor atau mobil favoritmu dengan proses pemesanan yang
+          mudah, pilihan kendaraan menarik, dan estimasi harga yang jelas.
+        </p>
+
+        <div class="hero-actions">
+          <a href="#kendaraan" class="button">Jelajahi Kendaraan →</a>
+          <a href="#booking" class="button button-outline">Simulasi Pesanan</a>
+        </div>
+
+        <div class="trust-row">
+          <span><strong>01</strong> Pilihan kendaraan</span>
+          <span><strong>02</strong> Estimasi harga</span>
+          <span><strong>03</strong> Simulasi mudah</span>
+        </div>
+      </div>
     </div>
-  </header>
+  </section>
 
-  <main>
-    <section class="hero" id="beranda">
-      <div class="container hero-content">
-        <div class="hero-text">
-          <span class="eyebrow">🚘 PERJALANAN JADI LEBIH MUDAH</span>
-          <h1>Sewa Kendaraan,<br><span>Jelajahi Lebih Jauh.</span></h1>
-          <p>
-            Butuh motor untuk berkeliling atau mobil untuk perjalanan bersama keluarga?
-            Temukan kendaraan yang sesuai dengan kebutuhanmu di RentGo.
-          </p>
-          <div class="hero-actions">
-            <a href="#kendaraan" class="btn btn-primary">Lihat Kendaraan →</a>
-            <a href="#keunggulan" class="btn btn-outline">Kenapa RentGo?</a>
-          </div>
-          <div class="hero-stats">
-            <div><strong>Motor</strong><span>Praktis dan hemat</span></div>
-            <div><strong>Mobil</strong><span>Nyaman bersama keluarga</span></div>
-            <div><strong>Fleksibel</strong><span>Pilih durasi sewa</span></div>
-          </div>
-        </div>
-
-        <div class="hero-image">
-          <img
-            src="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=1100&q=85"
-            alt="Mobil untuk disewakan"
-          >
-          <div class="floating-card">
-            <span class="floating-icon">✓</span>
-            <div>
-              <strong>Booking Mudah</strong>
-              <p>Pesan langsung melalui WhatsApp</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="search-strip">
-      <div class="container search-content">
-        <div>
-          <span class="search-label">PILIH KENDARAANMU</span>
-          <h2>Siap untuk perjalanan berikutnya?</h2>
-        </div>
-        <a href="#kendaraan" class="btn btn-primary">Cari Kendaraan</a>
-      </div>
-    </section>
-
-    <section class="section" id="kendaraan">
-      <div class="container">
-        <div class="section-heading">
-          <span class="eyebrow">KOLEKSI KENDARAAN</span>
-          <h2>Pilih Kendaraan Favoritmu</h2>
-          <p>Berbagai pilihan kendaraan untuk perjalanan harian maupun liburan.</p>
-        </div>
-
-        <div class="filter-buttons">
-          <button class="filter-btn active" data-filter="semua">Semua</button>
-          <button class="filter-btn" data-filter="motor">Motor</button>
-          <button class="filter-btn" data-filter="mobil">Mobil</button>
-        </div>
-
-        <div class="vehicle-grid">
-          <article class="vehicle-card" data-type="motor">
-            <div class="vehicle-image">
-              <img src="https://images.unsplash.com/photo-1558981806-ec527fa84c39?auto=format&fit=crop&w=900&q=80" alt="Motor matic" loading="lazy">
-              <span class="vehicle-tag">Motor</span>
-            </div>
-            <div class="vehicle-info">
-              <div class="vehicle-title">
-                <h3>Motor Matic</h3>
-                <span class="vehicle-capacity">👤 2 orang</span>
-              </div>
-              <p class="vehicle-description">Praktis untuk aktivitas harian dan jalan-jalan.</p>
-              <div class="vehicle-footer">
-                <div class="price">Rp100.000 <span>/ hari</span></div>
-                <button class="btn btn-small btn-primary rent-button" data-vehicle="Motor Matic" data-price="100000">Sewa</button>
-              </div>
-            </div>
-          </article>
-
-          <article class="vehicle-card" data-type="motor">
-            <div class="vehicle-image">
-              <img src="https://images.unsplash.com/photo-1568772585407-9361f9bf3a87?auto=format&fit=crop&w=900&q=80" alt="Motor sport" loading="lazy">
-              <span class="vehicle-tag">Motor</span>
-            </div>
-            <div class="vehicle-info">
-              <div class="vehicle-title">
-                <h3>Motor Sport</h3>
-                <span class="vehicle-capacity">👤 2 orang</span>
-              </div>
-              <p class="vehicle-description">Pilihan untuk kamu yang menyukai gaya sporty.</p>
-              <div class="vehicle-footer">
-                <div class="price">Rp200.000 <span>/ hari</span></div>
-                <button class="btn btn-small btn-primary rent-button" data-vehicle="Motor Sport" data-price="200000">Sewa</button>
-              </div>
-            </div>
-          </article>
-
-          <article class="vehicle-card" data-type="mobil">
-            <div class="vehicle-image">
-              <img src="https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&w=900&q=80" alt="Mobil keluarga" loading="lazy">
-              <span class="vehicle-tag">Mobil</span>
-            </div>
-            <div class="vehicle-info">
-              <div class="vehicle-title">
-                <h3>Mobil Keluarga</h3>
-                <span class="vehicle-capacity">👥 6–7 orang</span>
-              </div>
-              <p class="vehicle-description">Nyaman untuk perjalanan bersama keluarga.</p>
-              <div class="vehicle-footer">
-                <div class="price">Rp500.000 <span>/ hari</span></div>
-                <button class="btn btn-small btn-primary rent-button" data-vehicle="Mobil Keluarga" data-price="500000">Sewa</button>
-              </div>
-            </div>
-          </article>
-
-          <article class="vehicle-card" data-type="mobil">
-            <div class="vehicle-image">
-              <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=900&q=80" alt="Mobil premium" loading="lazy">
-              <span class="vehicle-tag">Mobil</span>
-            </div>
-            <div class="vehicle-info">
-              <div class="vehicle-title">
-                <h3>Mobil Premium</h3>
-                <span class="vehicle-capacity">👥 2–4 orang</span>
-              </div>
-              <p class="vehicle-description">Gaya elegan untuk perjalanan yang istimewa.</p>
-              <div class="vehicle-footer">
-                <div class="price">Rp800.000 <span>/ hari</span></div>
-                <button class="btn btn-small btn-primary rent-button" data-vehicle="Mobil Premium" data-price="800000">Sewa</button>
-              </div>
-            </div>
-          </article>
-        </div>
-
-        <p class="price-note">
-          * Harga di atas adalah contoh. Konfirmasikan harga, ketersediaan, syarat,
-          dan biaya tambahan kepada pengelola sebelum memesan.
+  <section class="section" id="kendaraan">
+    <div class="container">
+      <div class="section-heading">
+        <div class="eyebrow">Koleksi RentGo</div>
+        <h2>Temukan Kendaraan Favoritmu</h2>
+        <p>
+          Dari motor matic praktis hingga mobil premium untuk perjalanan
+          yang lebih nyaman.
         </p>
       </div>
-    </section>
 
-    <section class="benefits section" id="keunggulan">
-      <div class="container">
-        <div class="section-heading">
-          <span class="eyebrow">KENAPA RENTGO?</span>
-          <h2>Rental Mudah, Perjalanan Nyaman</h2>
-          <p>Kami ingin membantu perjalananmu menjadi lebih praktis.</p>
-        </div>
-
-        <div class="benefit-grid">
-          <div class="benefit-card">
-            <div class="benefit-icon">💰</div>
-            <h3>Harga Transparan</h3>
-            <p>Informasi harga sewa ditampilkan agar kamu dapat memperkirakan biaya.</p>
-          </div>
-          <div class="benefit-card">
-            <div class="benefit-icon">📱</div>
-            <h3>Pemesanan Praktis</h3>
-            <p>Kirim detail permintaan sewa langsung melalui WhatsApp.</p>
-          </div>
-          <div class="benefit-card">
-            <div class="benefit-icon">🚗</div>
-            <h3>Pilihan Beragam</h3>
-            <p>Pilih motor atau mobil sesuai kebutuhan perjalananmu.</p>
-          </div>
-          <div class="benefit-card">
-            <div class="benefit-icon">🗓️</div>
-            <h3>Durasi Fleksibel</h3>
-            <p>Tentukan tanggal mulai dan lama sewa pada formulir pemesanan.</p>
-          </div>
-        </div>
+      <div class="filters">
+        <button class="filter-btn active" data-filter="semua">Semua</button>
+        <button class="filter-btn" data-filter="matic">Motor Matic</button>
+        <button class="filter-btn" data-filter="sport">Motor Sport</button>
+        <button class="filter-btn" data-filter="mobil">Mobil</button>
       </div>
-    </section>
 
-    <section class="booking-section section" id="pemesanan">
-      <div class="container booking-layout">
-        <div class="booking-text">
-          <span class="eyebrow">PEMESANAN</span>
-          <h2>Pesan Kendaraanmu Sekarang</h2>
-          <p>Isi formulir berikut. Detail pesanan akan disiapkan untuk dikirim ke WhatsApp pengelola.</p>
-          <ul class="booking-list">
-            <li>✓ Pilih jenis kendaraan</li>
-            <li>✓ Tentukan tanggal dan durasi</li>
-            <li>✓ Konfirmasi ketersediaan dengan pengelola</li>
-          </ul>
-        </div>
+      <div class="vehicle-grid">
 
-        <form id="bookingForm" class="booking-form">
-          <h3>Formulir Rental</h3>
-
-          <label for="nama">Nama lengkap</label>
-          <input type="text" id="nama" name="nama" placeholder="Masukkan nama kamu" required>
-
-          <label for="telepon">Nomor WhatsApp kamu</label>
-          <input type="tel" id="telepon" name="telepon" placeholder="Contoh: 081234567890" required>
-
-          <label for="kendaraan">Pilih kendaraan</label>
-          <select id="kendaraanSelect" name="kendaraan" required>
-            <option value="">-- Pilih kendaraan --</option>
-            <option value="Motor Matic">Motor Matic - Rp100.000/hari</option>
-            <option value="Motor Sport">Motor Sport - Rp200.000/hari</option>
-            <option value="Mobil Keluarga">Mobil Keluarga - Rp500.000/hari</option>
-            <option value="Mobil Premium">Mobil Premium - Rp800.000/hari</option>
-          </select>
-
-          <label for="tanggal">Tanggal mulai sewa</label>
-          <input type="date" id="tanggal" name="tanggal" required>
-
-          <label for="durasi">Durasi sewa (hari)</label>
-          <input type="number" id="durasi" name="durasi" min="1" max="30" value="1" required>
-
-          <div class="estimate">
-            <span>Estimasi harga sewa</span>
-            <strong id="estimasiHarga">Pilih kendaraan</strong>
-            <small>Belum termasuk biaya tambahan jika ada.</small>
+        <article class="vehicle-card" data-category="matic">
+          <img
+            class="vehicle-image"
+            src="https://images.unsplash.com/photo-1558981806-ec527fa84c39?auto=format&fit=crop&w=900&q=85"
+            alt="Motor matic bergaya premium"
+            loading="lazy"
+          >
+          <div class="vehicle-body">
+            <div class="vehicle-type">Motor Matic</div>
+            <h3>Honda Beat</h3>
+            <p class="vehicle-description">
+              Ringan, irit, dan cocok untuk aktivitas sehari-hari.
+            </p>
+            <div class="vehicle-bottom">
+              <div class="price">Rp80.000<small>/ hari</small></div>
+              <button class="choose-btn" data-select-vehicle="Honda Beat">
+                Pilih Motor
+              </button>
+            </div>
           </div>
+        </article>
 
-          <label for="catatan">Catatan tambahan (opsional)</label>
-          <textarea id="catatan" name="catatan" rows="3" placeholder="Misalnya: ingin bertanya tentang sopir atau persyaratan sewa"></textarea>
+        <article class="vehicle-card" data-category="matic">
+          <img
+            class="vehicle-image"
+            src="https://images.unsplash.com/photo-1609630875171-b1321377ee65?auto=format&fit=crop&w=900&q=85"
+            alt="Skuter motor untuk perjalanan"
+            loading="lazy"
+          >
+          <div class="vehicle-body">
+            <div class="vehicle-type">Motor Matic Premium</div>
+            <h3>Honda Vario</h3>
+            <p class="vehicle-description">
+              Tampilan modern dengan kenyamanan untuk perjalanan kota.
+            </p>
+            <div class="vehicle-bottom">
+              <div class="price">Rp100.000<small>/ hari</small></div>
+              <button class="choose-btn" data-select-vehicle="Honda Vario">
+                Pilih Motor
+              </button>
+            </div>
+          </div>
+        </article>
 
-          <button type="submit" class="btn btn-primary btn-submit">Kirim Pesanan via WhatsApp ↗</button>
-          <p class="form-note">Pesanan belum dikonfirmasi sampai pengelola menyetujuinya.</p>
-        </form>
+        <article class="vehicle-card" data-category="matic">
+          <img
+            class="vehicle-image"
+            src="https://images.unsplash.com/photo-1591637333184-19aa84b3e01f?auto=format&fit=crop&w=900&q=85"
+            alt="Motor skuter premium"
+            loading="lazy"
+          >
+          <div class="vehicle-body">
+            <div class="vehicle-type">Maxi Scooter</div>
+            <h3>Yamaha NMAX</h3>
+            <p class="vehicle-description">
+              Posisi berkendara nyaman untuk perjalanan lebih jauh.
+            </p>
+            <div class="vehicle-bottom">
+              <div class="price">Rp150.000<small>/ hari</small></div>
+              <button class="choose-btn" data-select-vehicle="Yamaha NMAX">
+                Pilih Motor
+              </button>
+            </div>
+          </div>
+        </article>
+
+        <article class="vehicle-card" data-category="sport">
+          <img
+            class="vehicle-image"
+            src="https://images.unsplash.com/photo-1558981403-c5f9899a28bc?auto=format&fit=crop&w=900&q=85"
+            alt="Sepeda motor bergaya sport"
+            loading="lazy"
+          >
+          <div class="vehicle-body">
+            <div class="vehicle-type">Motor Sport</div>
+            <h3>Yamaha R15</h3>
+            <p class="vehicle-description">
+              Desain sporty untuk pengalaman berkendara yang berbeda.
+            </p>
+            <div class="vehicle-bottom">
+              <div class="price">Rp200.000<small>/ hari</small></div>
+              <button class="choose-btn" data-select-vehicle="Yamaha R15">
+                Pilih Motor
+              </button>
+            </div>
+          </div>
+        </article>
+
+        <article class="vehicle-card" data-category="mobil">
+          <img
+            class="vehicle-image"
+            src="https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?auto=format&fit=crop&w=900&q=85"
+            alt="Mobil untuk perjalanan keluarga"
+            loading="lazy"
+          >
+          <div class="vehicle-body">
+            <div class="vehicle-type">Mobil Keluarga</div>
+            <h3>Toyota Avanza</h3>
+            <p class="vehicle-description">
+              Pilihan praktis untuk perjalanan bersama keluarga.
+            </p>
+            <div class="vehicle-bottom">
+              <div class="price">Rp350.000<small>/ hari</small></div>
+              <button class="choose-btn" data-select-vehicle="Toyota Avanza">
+                Pilih Mobil
+              </button>
+            </div>
+          </div>
+        </article>
+
+        <article class="vehicle-card" data-category="mobil">
+          <img
+            class="vehicle-image"
+            src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=900&q=85"
+            alt="Mobil premium untuk perjalanan"
+            loading="lazy"
+          >
+          <div class="vehicle-body">
+            <div class="vehicle-type">Mobil Premium</div>
+            <h3>Toyota Fortuner</h3>
+            <p class="vehicle-description">
+              Tampilan elegan dan kesan tangguh untuk perjalanan.
+            </p>
+            <div class="vehicle-bottom">
+              <div class="price">Rp850.000<small>/ hari</small></div>
+              <button class="choose-btn" data-select-vehicle="Toyota Fortuner">
+                Pilih Mobil
+              </button>
+            </div>
+          </div>
+        </article>
+
       </div>
-    </section>
-
-    <section class="contact-section" id="kontak">
-      <div class="container contact-content">
-        <div>
-          <span class="eyebrow">BUTUH BANTUAN?</span>
-          <h2>Ada yang ingin ditanyakan?</h2>
-          <p>Hubungi pengelola untuk informasi kendaraan, harga, dan persyaratan rental.</p>
-        </div>
-        <button id="contactButton" class="btn btn-light">Hubungi WhatsApp ↗</button>
-      </div>
-    </section>
-  </main>
-
-  <footer class="footer">
-    <div class="container footer-content">
-      <a href="#beranda" class="logo">Rent<span>Go.</span></a>
-      <p>Solusi rental motor dan mobil untuk perjalananmu.</p>
-      <p class="copyright">© <span id="year"></span> RentGo. Semua hak dilindungi.</p>
     </div>
-  </footer>
+  </section>
 
-  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <section class="section features" id="keunggulan">
+    <div class="container">
+      <div class="section-heading">
+        <div class="eyebrow">Mengapa RentGo?</div>
+        <h2>Pengalaman Sewa yang Lebih Praktis</h2>
+        <p>Konsep layanan rental modern untuk kebutuhan perjalananmu.</p>
+      </div>
 
-  <script src="./script.js"></script>
+      <div class="feature-grid">
+        <div class="feature">
+          <div class="feature-icon">✦</div>
+          <h3>Pilihan Beragam</h3>
+          <p>Pilih kendaraan berdasarkan kebutuhan dan gaya perjalanan.</p>
+        </div>
+
+        <div class="feature">
+          <div class="feature-icon">◷</div>
+          <h3>Estimasi Transparan</h3>
+          <p>Lihat perkiraan biaya berdasarkan kendaraan dan durasi sewa.</p>
+        </div>
+
+        <div class="feature">
+          <div class="feature-icon">✓</div>
+          <h3>Mudah Digunakan</h3>
+          <p>Isi formulir sederhana untuk mencoba proses pemesanan.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section booking-section" id="booking">
+    <div class="container booking-layout">
+      <div class="booking-info">
+        <div class="eyebrow">Booking Demo</div>
+        <h2>Rencanakan Perjalananmu.</h2>
+        <p>
+          Pilih kendaraan, masukkan tanggal dan durasi sewa, lalu lihat
+          ringkasan pemesanan beserta perkiraan total biaya.
+        </p>
+
+        <div class="demo-note">
+          <strong>Catatan tugas:</strong> Website ini merupakan demonstrasi.
+          Pesanan tidak dikirim ke pengelola dan tidak disimpan ke database.
+        </div>
+      </div>
+
+      <form class="booking-form" id="bookingForm">
+        <h3>Simulasi Pemesanan</h3>
+
+        <div class="form-grid">
+          <div class="form-group full">
+            <label for="nama">Nama lengkap</label>
+            <input
+              type="text"
+              id="nama"
+              name="nama"
+              placeholder="Masukkan nama kamu"
+              required
+            >
+          </div>
+
+          <div class="form-group full">
+            <label for="kendaraan">Pilih kendaraan</label>
+            <select id="kendaraan" name="kendaraan" required>
+              <option value="">-- Pilih kendaraan --</option>
+              <option value="Honda Beat">Honda Beat</option>
+              <option value="Honda Vario">Honda Vario</option>
+              <option value="Yamaha NMAX">Yamaha NMAX</option>
+              <option value="Yamaha R15">Yamaha R15</option>
+              <option value="Toyota Avanza">Toyota Avanza</option>
+              <option value="Toyota Fortuner">Toyota Fortuner</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="tanggal">Tanggal sewa</label>
+            <input type="date" id="tanggal" name="tanggal" required>
+          </div>
+
+          <div class="form-group">
+            <label for="durasi">Durasi (hari)</label>
+            <input
+              type="number"
+              id="durasi"
+              name="durasi"
+              min="1"
+              max="30"
+              value="1"
+              required
+            >
+          </div>
+        </div>
+
+        <div class="total-box">
+          <span>Perkiraan total biaya</span>
+          <strong id="totalHarga">Rp0</strong>
+        </div>
+
+        <button type="submit" class="submit-btn">
+          Simulasikan Pemesanan →
+        </button>
+
+        <div id="hasilSimulasi" role="status" aria-live="polite"></div>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="container footer-content">
+    <a href="#" class="logo">Rent<span>Go.</span></a>
+    <p>© 2026 RentGo. Proyek demonstrasi website rental kendaraan.</p>
+  </div>
+</footer>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const form = document.querySelector("#bookingForm");
+  const vehicleSelect = document.querySelector("#kendaraan");
+  const tanggalInput = document.querySelector("#tanggal");
+  const durasiInput = document.querySelector("#durasi");
+  const totalElement = document.querySelector("#totalHarga");
+  const hasil = document.querySelector("#hasilSimulasi");
+
+  const hargaKendaraan = {
+    "Honda Beat": 80000,
+    "Honda Vario": 100000,
+    "Yamaha NMAX": 150000,
+    "Yamaha R15": 200000,
+    "Toyota Avanza": 350000,
+    "Toyota Fortuner": 850000
+  };
+
+  function rupiah(angka) {
+    return new Intl.NumberFormat("id-ID", {
+      style: "currency",
+      currency: "IDR",
+      maximumFractionDigits: 0
+    }).format(angka);
+  }
+
+  function hitungTotal() {
+    const harga = hargaKendaraan[vehicleSelect.value] || 0;
+    const durasi = Number(durasiInput.value) || 0;
+
+    totalElement.textContent = rupiah(
+      harga > 0 && durasi > 0 ? harga * durasi : 0
+    );
+  }
+
+  document.querySelectorAll("[data-filter]").forEach(button => {
+    button.addEventListener("click", () => {
+      document.querySelectorAll("[data-filter]").forEach(item => {
+        item.classList.remove("active");
+      });
+
+      button.classList.add("active");
+
+      document.querySelectorAll(".vehicle-card").forEach(card => {
+        const kategori = button.dataset.filter;
+        card.style.display =
+          kategori === "semua" || card.dataset.category === kategori
+            ? ""
+            : "none";
+      });
+    });
+  });
+
+  document.querySelectorAll("[data-select-vehicle]").forEach(button => {
+    button.addEventListener("click", () => {
+      vehicleSelect.value = button.dataset.selectVehicle;
+      hitungTotal();
+
+      document.querySelector("#booking").scrollIntoView({
+        behavior: "smooth"
+      });
+    });
+  });
+
+  const now = new Date();
+  const today = [
+    now.getFullYear(),
+    String(now.getMonth() + 1).padStart(2, "0"),
+    String(now.getDate()).padStart(2, "0")
+  ].join("-");
+
+  tanggalInput.min = today;
+
+  vehicleSelect.addEventListener("change", hitungTotal);
+  durasiInput.addEventListener("input", hitungTotal);
+
+  form.addEventListener("submit", event => {
+    event.preventDefault();
+
+    if (!form.reportValidity()) return;
+
+    const nama = document.querySelector("#nama").value.trim();
+    const kendaraan = vehicleSelect.value;
+    const tanggal = tanggalInput.value;
+    const durasi = Number(durasiInput.value);
+    const harga = hargaKendaraan[kendaraan] || 0;
+
+    if (!harga || durasi < 1 || durasi > 30) {
+      alert("Silakan periksa kendaraan dan durasi sewa.");
+      return;
+    }
+
+    const tanggalFormat = new Date(tanggal + "T00:00:00")
+      .toLocaleDateString("id-ID", {
+        day: "numeric",
+        month: "long",
+        year: "numeric"
+      });
+
+    const total = harga * durasi;
+
+    hasil.textContent =
+      "✓ SIMULASI PEMESANAN BERHASIL\n\n" +
+      "Nama: " + nama + "\n" +
+      "Kendaraan: " + kendaraan + "\n" +
+      "Tanggal sewa: " + tanggalFormat + "\n" +
+      "Durasi: " + durasi + " hari\n" +
+      "Perkiraan total: " + rupiah(total) + "\n\n" +
+      "Ini hanya simulasi untuk tugas. Tidak ada transaksi nyata " +
+      "dan data tidak disimpan.";
+
+    hasil.style.display = "block";
+    hasil.scrollIntoView({
+      behavior: "smooth",
+      block: "center"
+    });
+  });
+
+  hitungTotal();
+});
+</script>
+
 </body>
 </html>
