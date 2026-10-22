@@ -62,7 +62,7 @@ function nomorWhatsAppValid() {
     tampilkanToast(
       "Berhasil Terkirim."
     );
-    return true;
+    return false;
   }
 
   return true;
