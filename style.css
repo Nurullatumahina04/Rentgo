@@ -1,4 +1,3 @@
-
 :root {
   --primary: #155eef;
   --primary-dark: #1047bd;
@@ -56,6 +55,7 @@ button {
   margin: 0 auto;
 }
 
+/* NAVIGASI */
 .header {
   position: sticky;
   top: 0;
@@ -101,6 +101,7 @@ button {
   color: var(--primary);
 }
 
+/* TOMBOL */
 .btn {
   min-height: 46px;
   display: inline-flex;
@@ -140,6 +141,11 @@ button {
   font-size: 13px;
 }
 
+.btn-light {
+  color: var(--navy);
+  background: var(--white);
+}
+
 .menu-toggle {
   display: none;
   border: 0;
@@ -148,6 +154,7 @@ button {
   font-size: 27px;
 }
 
+/* BAGIAN BERANDA */
 .hero {
   padding: 76px 0 82px;
   overflow: hidden;
@@ -270,6 +277,7 @@ button {
   font-size: 11px;
 }
 
+/* BAR PENCARIAN KENDARAAN */
 .search-strip {
   padding: 26px 0;
   background: var(--navy);
@@ -299,6 +307,7 @@ button {
   flex-shrink: 0;
 }
 
+/* BAGIAN UMUM */
 .section {
   padding: 86px 0;
 }
@@ -328,6 +337,7 @@ button {
   font-size: 14px;
 }
 
+/* FILTER KENDARAAN */
 .filter-buttons {
   display: flex;
   justify-content: center;
@@ -353,6 +363,7 @@ button {
   border-color: var(--primary);
 }
 
+/* KARTU KENDARAAN */
 .vehicle-grid {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -464,6 +475,7 @@ button {
   text-align: center;
 }
 
+/* KEUNGGULAN RENTGO */
 .benefits {
   background: var(--background);
 }
@@ -499,28 +511,29 @@ button {
 }
 
 .benefit-card p {
-  margin-top: 9px;
+  margin-top: 8px;
   color: var(--muted);
-  font-size: 12px;
+  font-size: 13px;
 }
 
+/* FORM PEMESANAN */
 .booking-section {
   background: var(--white);
 }
 
 .booking-layout {
   display: grid;
-  grid-template-columns: 0.85fr 1.15fr;
+  grid-template-columns: 0.9fr 1.1fr;
   align-items: start;
-  gap: 70px;
+  gap: 65px;
 }
 
 .booking-text {
-  padding-top: 25px;
+  padding-top: 18px;
 }
 
 .booking-text h2 {
-  margin-bottom: 17px;
+  margin-bottom: 18px;
 }
 
 .booking-text > p {
@@ -531,20 +544,17 @@ button {
 .booking-list {
   display: grid;
   gap: 13px;
-  margin-top: 28px;
+  margin-top: 27px;
   list-style: none;
   color: var(--text);
   font-size: 14px;
   font-weight: 600;
 }
 
-.booking-list li {
-  padding: 12px 15px;
-  background: var(--background);
-  border-radius: 10px;
-}
-
 .booking-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
   padding: 30px;
   background: var(--white);
   border: 1px solid var(--border);
@@ -553,15 +563,14 @@ button {
 }
 
 .booking-form h3 {
-  margin-bottom: 23px;
+  margin-bottom: 8px;
   color: var(--navy);
-  font-size: 22px;
+  font-size: 23px;
 }
 
 .booking-form label {
-  display: block;
-  margin: 15px 0 7px;
-  color: var(--text);
+  margin-top: 7px;
+  color: var(--navy);
   font-size: 13px;
   font-weight: 700;
 }
@@ -571,7 +580,7 @@ button {
 .booking-form textarea {
   width: 100%;
   min-height: 46px;
-  padding: 11px 13px;
+  padding: 12px 14px;
   color: var(--text);
   background: #fbfcff;
   border: 1px solid var(--border);
@@ -580,6 +589,7 @@ button {
 }
 
 .booking-form textarea {
+  min-height: 90px;
   resize: vertical;
 }
 
@@ -594,10 +604,11 @@ button {
   display: flex;
   flex-direction: column;
   gap: 4px;
-  margin-top: 20px;
-  padding: 16px;
-  background: #edf4ff;
-  border-radius: 10px;
+  margin: 8px 0;
+  padding: 17px;
+  background: #edf3ff;
+  border: 1px solid #dbe7ff;
+  border-radius: 12px;
 }
 
 .estimate span {
@@ -606,8 +617,8 @@ button {
 }
 
 .estimate strong {
-  color: var(--primary-dark);
-  font-size: 23px;
+  color: var(--primary);
+  font-size: 24px;
 }
 
 .estimate small {
@@ -617,19 +628,20 @@ button {
 
 .btn-submit {
   width: 100%;
-  margin-top: 22px;
+  margin-top: 10px;
 }
 
 .form-note {
-  margin-top: 12px;
   color: var(--muted);
   font-size: 11px;
   text-align: center;
 }
 
+/* KONTAK */
 .contact-section {
   padding: 55px 0;
-  background: #eaf1ff;
+  background: var(--primary);
+  color: var(--white);
 }
 
 .contact-content {
@@ -641,81 +653,79 @@ button {
 
 .contact-content .eyebrow {
   margin-bottom: 8px;
+  color: #d8e5ff;
 }
 
 .contact-content h2 {
-  font-size: clamp(26px, 3vw, 34px);
+  color: var(--white);
 }
 
 .contact-content p {
-  max-width: 570px;
   margin-top: 10px;
-  color: var(--muted);
+  color: #e1eaff;
   font-size: 14px;
 }
 
-.btn-light {
-  flex-shrink: 0;
-  color: var(--white);
-  background: #12805c;
-}
-
-.btn-light:hover {
-  background: #0c6849;
-}
-
+/* FOOTER */
 .footer {
-  padding: 34px 0;
-  background: var(--navy);
-  color: var(--white);
+  padding: 35px 0;
+  background: #0b1729;
+  color: #dce5f2;
 }
 
 .footer-content {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 15px;
+  gap: 9px;
+  text-align: center;
 }
 
 .footer .logo {
   color: var(--white);
 }
 
-.footer .logo span {
-  color: #76a3ff;
+.footer-content > p {
+  font-size: 13px;
 }
 
-.footer p {
-  color: #c0ccdc;
-  font-size: 12px;
+.copyright {
+  margin-top: 8px;
+  color: #9baac0;
+  font-size: 12px !important;
 }
 
+/* NOTIFIKASI */
 .toast {
   position: fixed;
-  z-index: 200;
-  right: 20px;
-  bottom: 20px;
-  max-width: calc(100% - 40px);
-  padding: 13px 18px;
+  right: 24px;
+  bottom: 24px;
+  z-index: 9999;
+  max-width: min(390px, calc(100% - 32px));
+  padding: 15px 20px;
   color: var(--white);
-  background: var(--navy);
-  border-radius: 10px;
-  box-shadow: var(--shadow);
+  background: #10213b;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 12px;
+  box-shadow: 0 12px 35px rgba(16, 33, 59, 0.25);
+  font-size: 14px;
+  font-weight: 600;
   opacity: 0;
-  pointer-events: none;
+  visibility: hidden;
   transform: translateY(12px);
-  transition: opacity 0.25s, transform 0.25s;
+  transition: opacity 0.25s, transform 0.25s, visibility 0.25s;
 }
 
 .toast.show {
   opacity: 1;
+  visibility: visible;
   transform: translateY(0);
 }
 
-@media (max-width: 1000px) {
+/* TABLET */
+@media (max-width: 1024px) {
   .hero-content {
-    gap: 30px;
+    gap: 35px;
   }
 
   .vehicle-grid,
@@ -723,33 +733,46 @@ button {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  .vehicle-image img {
-    height: 230px;
-  }
-
   .booking-layout {
     gap: 35px;
   }
+
+  .vehicle-image img {
+    height: 230px;
+  }
 }
 
-@media (max-width: 760px) {
+/* HP */
+@media (max-width: 768px) {
+  html {
+    scroll-padding-top: 75px;
+  }
+
+  .container {
+    width: min(100% - 32px, 560px);
+  }
+
   .navbar {
     min-height: 68px;
+    gap: 12px;
+  }
+
+  .logo {
+    font-size: 26px;
   }
 
   .nav-menu {
     position: absolute;
     top: 68px;
-    right: 5%;
-    left: 5%;
+    left: 0;
+    right: 0;
     display: none;
-    align-items: stretch;
     flex-direction: column;
+    align-items: stretch;
     gap: 0;
-    padding: 12px;
+    padding: 10px 16px 18px;
     background: var(--white);
-    border: 1px solid var(--border);
-    border-radius: 12px;
+    border-bottom: 1px solid var(--border);
     box-shadow: var(--shadow);
   }
 
@@ -758,36 +781,58 @@ button {
   }
 
   .nav-menu a {
-    padding: 12px;
+    padding: 13px 8px;
+    border-bottom: 1px solid var(--border);
   }
 
   .nav-button {
-    display: none;
+    margin-left: auto;
+    min-height: 39px;
+    padding: 9px 12px;
+    font-size: 12px;
   }
 
   .menu-toggle {
     display: block;
+    flex-shrink: 0;
   }
 
   .hero {
-    padding: 52px 0 60px;
+    padding: 55px 0 60px;
   }
 
   .hero-content {
     grid-template-columns: 1fr;
+    gap: 38px;
   }
 
   .hero h1 {
-    font-size: clamp(36px, 9vw, 49px);
+    font-size: clamp(36px, 9vw, 48px);
+    letter-spacing: -1.5px;
+  }
+
+  .hero-text > p {
+    font-size: 14px;
   }
 
   .hero-image > img {
     height: 300px;
+    border-radius: 20px;
   }
 
   .floating-card {
     right: 10px;
-    bottom: 12px;
+    bottom: 14px;
+    max-width: 250px;
+    padding: 12px;
+  }
+
+  .hero-stats {
+    gap: 17px;
+  }
+
+  .hero-stats span {
+    font-size: 11px;
   }
 
   .search-content {
@@ -795,17 +840,65 @@ button {
     flex-direction: column;
   }
 
+  .search-content h2 {
+    font-size: 20px;
+  }
+
   .section {
-    padding: 65px 0;
+    padding: 60px 0;
+  }
+
+  .section-heading {
+    margin-bottom: 28px;
+  }
+
+  .vehicle-grid,
+  .benefit-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+  }
+
+  .vehicle-image img {
+    height: 160px;
+  }
+
+  .vehicle-info {
+    padding: 13px;
+  }
+
+  .vehicle-title {
+    flex-direction: column;
+    gap: 3px;
+  }
+
+  .vehicle-description {
+    min-height: 60px;
+  }
+
+  .vehicle-footer {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .vehicle-footer .btn {
+    width: 100%;
+  }
+
+  .benefit-card {
+    padding: 20px 13px;
   }
 
   .booking-layout {
     grid-template-columns: 1fr;
-    gap: 30px;
+    gap: 28px;
   }
 
   .booking-text {
     padding-top: 0;
+  }
+
+  .booking-form {
+    padding: 22px 18px;
   }
 
   .contact-content {
@@ -813,15 +906,23 @@ button {
     flex-direction: column;
   }
 
-  .footer-content {
-    flex-direction: column;
-    align-items: flex-start;
+  .contact-content .btn {
+    width: 100%;
+  }
+
+  .toast {
+    right: 16px;
+    bottom: 16px;
+    left: 16px;
+    max-width: none;
   }
 }
 
-@media (max-width: 480px) {
-  .container {
-    width: 92%;
+/* HP KECIL */
+@media (max-width: 400px) {
+  .nav-button {
+    padding: 8px;
+    font-size: 11px;
   }
 
   .vehicle-grid,
@@ -830,22 +931,27 @@ button {
   }
 
   .vehicle-image img {
-    height: 230px;
+    height: 220px;
   }
 
-  .hero-stats {
-    gap: 18px;
+  .vehicle-title {
+    flex-direction: row;
+  }
+
+  .vehicle-description {
+    min-height: 0;
+  }
+
+  .vehicle-footer {
+    align-items: center;
+    flex-direction: row;
+  }
+
+  .vehicle-footer .btn {
+    width: auto;
   }
 
   .hero-actions .btn {
     width: 100%;
-  }
-
-  .booking-form {
-    padding: 20px;
-  }
-
-  .search-content h2 {
-    font-size: 18px;
   }
 }
