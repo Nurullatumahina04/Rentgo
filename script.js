@@ -43,7 +43,7 @@ function tampilkanToast(pesan) {
 function bukaWhatsApp(pesan) {
   const nomorValid = /^\d{10,15}$/.test(NOMOR_WHATSAPP);
 
-  if (!nomorValid || NOMOR_WHATSAPP === "6281234567890") {
+  if (!nomorValid || NOMOR_WHATSAPP === "6282133714451") {
     tampilkanToast(
       "Atur nomor WhatsApp pengelola terlebih dahulu di script.js."
     );
