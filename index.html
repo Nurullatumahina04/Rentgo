@@ -9,131 +9,139 @@
 </head>
 <body>
 
-    <header>
-        <div class="logo">Rent<span>Go</span></div>
-        <nav>
-            <a href="#beranda">Beranda</a>
-            <a href="#kendaraan">Kendaraan</a>
-            <a href="#pesan">Pemesanan</a>
-        </nav>
-    </header>
+<header>
+    <div class="logo">Rent<span>Go</span></div>
+    <nav>
+        <a href="#beranda">Beranda</a>
+        <a href="#kendaraan">Kendaraan</a>
+        <a href="#pesan">Pemesanan</a>
+    </nav>
+</header>
 
-    <section class="hero" id="beranda">
-        <div class="hero-content">
-            <p class="label">RENTAL KENDARAAN MUDAH</p>
-            <h1>Perjalanan Mudah,<br><span>Tanpa Ribet.</span></h1>
-            <p>Pilih kendaraan favoritmu dan nikmati perjalanan dengan nyaman bersama RentGo.</p>
-            <a href="#kendaraan" class="btn">Lihat Kendaraan</a>
+<section class="hero" id="beranda">
+    <div class="hero-content">
+        <p class="label">RENTAL KENDARAAN</p>
+        <h1>Perjalanan Mudah,<br><span>Tanpa Ribet.</span></h1>
+        <p>Pilih kendaraan favoritmu untuk perjalanan yang nyaman dan praktis.</p>
+        <a href="#kendaraan" class="btn">Lihat Kendaraan</a>
+    </div>
+</section>
+
+<section class="kendaraan" id="kendaraan">
+    <div class="section-title">
+        <p class="label">PILIHAN KAMI</p>
+        <h2>Kendaraan Tersedia</h2>
+        <p>Pilih salah satu dari empat kendaraan berikut.</p>
+    </div>
+
+    <div class="vehicle-list">
+
+        <article class="vehicle-card">
+            <img
+                src="https://commons.wikimedia.org/wiki/Special:FilePath/2020_Honda_BeAT_CBS_110_%2820200622%29.jpg?width=900"
+                alt="Honda BeAT 110 cc"
+                loading="lazy">
+            <div class="vehicle-info">
+                <h3>Honda BeAT</h3>
+                <p class="category">Motor Matic</p>
+                <p class="price">Rp80.000 <span>/ hari</span></p>
+                <button class="btn pilih" data-nama="Honda BeAT">
+                    Pilih Kendaraan
+                </button>
+            </div>
+        </article>
+
+        <article class="vehicle-card">
+            <img
+                src="https://commons.wikimedia.org/wiki/Special:FilePath/2020_Yamaha_NMAX_155_ABS_%2820200810%29_02.jpg?width=900"
+                alt="Yamaha NMAX 155"
+                loading="lazy">
+            <div class="vehicle-info">
+                <h3>Yamaha NMAX</h3>
+                <p class="category">Motor Matic</p>
+                <p class="price">Rp150.000 <span>/ hari</span></p>
+                <button class="btn pilih" data-nama="Yamaha NMAX">
+                    Pilih Kendaraan
+                </button>
+            </div>
+        </article>
+
+        <article class="vehicle-card">
+            <img
+                src="https://commons.wikimedia.org/wiki/Special:FilePath/2022_Toyota_Avanza_%28W100%29_1.5_G%2C_Pakuwon_Trade_Center%2C_West_Surabaya.jpg?width=900"
+                alt="Toyota Avanza"
+                loading="lazy">
+            <div class="vehicle-info">
+                <h3>Toyota Avanza</h3>
+                <p class="category">Mobil</p>
+                <p class="price">Rp350.000 <span>/ hari</span></p>
+                <button class="btn pilih" data-nama="Toyota Avanza">
+                    Pilih Kendaraan
+                </button>
+            </div>
+        </article>
+
+        <article class="vehicle-card">
+            <img
+                src="https://commons.wikimedia.org/wiki/Special:FilePath/Toyota_Fortuner_car.jpg?width=900"
+                alt="Toyota Fortuner"
+                loading="lazy">
+            <div class="vehicle-info">
+                <h3>Toyota Fortuner</h3>
+                <p class="category">Mobil SUV</p>
+                <p class="price">Rp850.000 <span>/ hari</span></p>
+                <button class="btn pilih" data-nama="Toyota Fortuner">
+                    Pilih Kendaraan
+                </button>
+            </div>
+        </article>
+
+    </div>
+</section>
+
+<section class="pemesanan" id="pesan">
+    <div class="section-title">
+        <p class="label">PESAN SEKARANG</p>
+        <h2>Formulir Pemesanan</h2>
+        <p>Lengkapi data untuk mengirim permintaan pemesanan.</p>
+    </div>
+
+    <form id="bookingForm">
+        <label for="nama">Nama Lengkap</label>
+        <input type="text" id="nama" placeholder="Masukkan nama lengkap" required>
+
+        <label for="kendaraan">Pilih Kendaraan</label>
+        <select id="kendaraan" required>
+            <option value="">-- Pilih kendaraan --</option>
+            <option value="Honda BeAT">Honda BeAT - Rp80.000/hari</option>
+            <option value="Yamaha NMAX">Yamaha NMAX - Rp150.000/hari</option>
+            <option value="Toyota Avanza">Toyota Avanza - Rp350.000/hari</option>
+            <option value="Toyota Fortuner">Toyota Fortuner - Rp850.000/hari</option>
+        </select>
+
+        <label for="tanggal">Tanggal Mulai Sewa</label>
+        <input type="date" id="tanggal" required>
+
+        <label for="durasi">Durasi Sewa (hari)</label>
+        <input type="number" id="durasi" min="1" value="1" required>
+
+        <div class="total">
+            <span>Total Biaya</span>
+            <strong id="totalHarga">Rp0</strong>
         </div>
-    </section>
 
-    <section class="kendaraan" id="kendaraan">
-        <div class="section-title">
-            <p class="label">PILIHAN KAMI</p>
-            <h2>Kendaraan Tersedia</h2>
-            <p>Pilih kendaraan sesuai kebutuhan perjalananmu.</p>
-        </div>
+        <button type="submit" class="btn btn-submit">
+            Pesan via WhatsApp
+        </button>
+    </form>
+</section>
 
-        <div class="vehicle-list">
+<footer>
+    <div class="logo">Rent<span>Go</span></div>
+    <p>Rental kendaraan untuk perjalananmu.</p>
+    <p class="copyright">© 2026 RentGo. Semua hak dilindungi.</p>
+</footer>
 
-            <div class="vehicle-card">
-                <img src="https://images.unsplash.com/photo-1558981403-c5f9899a28bc?auto=format&fit=crop&w=800&q=80"
-                     alt="Honda Beat" loading="lazy">
-                <div class="vehicle-info">
-                    <h3>Honda Beat</h3>
-                    <p class="category">Motor Matic</p>
-                    <p class="price">Rp80.000 <span>/ hari</span></p>
-                    <button class="btn pilih" data-nama="Honda Beat" data-harga="80000">
-                        Pilih Kendaraan
-                    </button>
-                </div>
-            </div>
-
-            <div class="vehicle-card">
-                <img src="https://images.unsplash.com/photo-1591637333184-19aa84b3e01f?auto=format&fit=crop&w=800&q=80"
-                     alt="Yamaha NMAX" loading="lazy">
-                <div class="vehicle-info">
-                    <h3>Yamaha NMAX</h3>
-                    <p class="category">Motor Matic</p>
-                    <p class="price">Rp150.000 <span>/ hari</span></p>
-                    <button class="btn pilih" data-nama="Yamaha NMAX" data-harga="150000">
-                        Pilih Kendaraan
-                    </button>
-                </div>
-            </div>
-
-            <div class="vehicle-card">
-                <img src="https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?auto=format&fit=crop&w=800&q=80"
-                     alt="Toyota Avanza" loading="lazy">
-                <div class="vehicle-info">
-                    <h3>Toyota Avanza</h3>
-                    <p class="category">Mobil</p>
-                    <p class="price">Rp350.000 <span>/ hari</span></p>
-                    <button class="btn pilih" data-nama="Toyota Avanza" data-harga="350000">
-                        Pilih Kendaraan
-                    </button>
-                </div>
-            </div>
-
-            <div class="vehicle-card">
-                <img src="https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?auto=format&fit=crop&w=800&q=80"
-                     alt="Toyota Fortuner" loading="lazy">
-                <div class="vehicle-info">
-                    <h3>Toyota Fortuner</h3>
-                    <p class="category">Mobil</p>
-                    <p class="price">Rp850.000 <span>/ hari</span></p>
-                    <button class="btn pilih" data-nama="Toyota Fortuner" data-harga="850000">
-                        Pilih Kendaraan
-                    </button>
-                </div>
-            </div>
-
-        </div>
-    </section>
-
-    <section class="pemesanan" id="pesan">
-        <div class="section-title">
-            <p class="label">PESAN SEKARANG</p>
-            <h2>Formulir Pemesanan</h2>
-            <p>Isi data berikut untuk melakukan pemesanan.</p>
-        </div>
-
-        <form id="bookingForm">
-            <label for="nama">Nama Lengkap</label>
-            <input type="text" id="nama" placeholder="Masukkan nama lengkap" required>
-
-            <label for="kendaraan">Pilih Kendaraan</label>
-            <select id="kendaraan" required>
-                <option value="">-- Pilih kendaraan --</option>
-                <option value="Honda Beat" data-harga="80000">Honda Beat - Rp80.000/hari</option>
-                <option value="Yamaha NMAX" data-harga="150000">Yamaha NMAX - Rp150.000/hari</option>
-                <option value="Toyota Avanza" data-harga="350000">Toyota Avanza - Rp350.000/hari</option>
-                <option value="Toyota Fortuner" data-harga="850000">Toyota Fortuner - Rp850.000/hari</option>
-            </select>
-
-            <label for="tanggal">Tanggal Mulai Sewa</label>
-            <input type="date" id="tanggal" required>
-
-            <label for="durasi">Durasi Sewa (hari)</label>
-            <input type="number" id="durasi" min="1" value="1" required>
-
-            <div class="total">
-                <span>Total Biaya</span>
-                <strong id="totalHarga">Rp0</strong>
-            </div>
-
-            <button type="submit" class="btn btn-submit">
-                Pesan via WhatsApp
-            </button>
-        </form>
-    </section>
-
-    <footer>
-        <div class="logo">Rent<span>Go</span></div>
-        <p>Rental kendaraan mudah dan nyaman untuk perjalananmu.</p>
-        <p class="copyright">© 2026 RentGo. Semua hak dilindungi.</p>
-    </footer>
-
-    <script src="script.js"></script>
+<script src="script.js"></script>
 </body>
 </html>
