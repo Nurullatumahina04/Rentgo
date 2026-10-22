@@ -4,263 +4,279 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Nurul Cake - Toko kue dengan rasa istimewa, dibuat segar setiap hari.">
-  <title>Nurul Cake | Freshly Baked With Love</title>
+  <meta name="description" content="Rental motor dan mobil dengan harga terjangkau, kendaraan nyaman, dan pemesanan mudah.">
+  <title> - Rental Motor & Mobil</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="./style.css">
 </head>
 <body>
 
   <header class="header">
-    <a class="logo" href="#home">
-      NURUL<span>CAKE.</span>
-      <small>FRESHLY BAKED WITH LOVE</small>
-    </a>
+    <div class="container navbar">
+      <a href="#beranda" class="logo">Rent<span>Go.</span></a>
 
-    <button class="menu-toggle" id="menuToggle" aria-label="Buka menu">
-      ☰
-    </button>
+      <nav id="navMenu" class="nav-menu">
+        <a href="#beranda">Beranda</a>
+        <a href="#kendaraan">Kendaraan</a>
+        <a href="#keunggulan">Keunggulan</a>
+        <a href="#kontak">Kontak</a>
+      </nav>
 
-    <nav class="nav" id="navigation">
-      <a href="#home">Beranda</a>
-      <a href="#produk">Menu Kue</a>
-      <a href="#tentang">Tentang Kami</a>
-      <a href="#kontak">Kontak</a>
-      <a href="#produk" class="nav-button">Pesan Sekarang</a>
-    </nav>
+      <a href="#pemesanan" class="btn btn-primary nav-button">Pesan Sekarang</a>
+      <button class="menu-toggle" id="menuToggle" aria-label="Buka menu">☰</button>
+    </div>
   </header>
 
   <main>
-    <section class="hero" id="home">
-      <div class="hero-content">
-        <p class="eyebrow">HOMEMADE • FRESH • PREMIUM</p>
-        <h1>Manisnya Hari,<br><span>Indahnya Cerita.</span></h1>
-        <p class="hero-description">
-          Temukan kebahagiaan dalam setiap gigitan. Kue pilihan
-          yang dibuat dengan bahan berkualitas dan sepenuh hati.
-        </p>
-        <div class="hero-actions">
-          <a href="#produk" class="button button-primary">Jelajahi Menu ↗</a>
-          <a href="#tentang" class="button button-outline">Cerita Kami</a>
-        </div>
-        <div class="hero-note">
-          <span class="stars">★★★★★</span>
-          <span>Dibuat segar dengan penuh cinta</span>
-        </div>
-      </div>
-
-      <div class="hero-image">
-        <img src="./images/hero-cake.jpg"
-             alt="Kue spesial Nurul Cake"
-             onerror="this.onerror=null;this.src='./images/strawberry-cake.jpg'">
-        <div class="floating-card">
-          <span class="floating-icon">♡</span>
-          <div>
-            <strong>Made with Love</strong>
-            <small>Fresh every day</small>
-          </div>
-        </div>
-        <div class="image-label">A LITTLE PIECE OF HAPPINESS</div>
-      </div>
-    </section>
-
-    <section class="benefits">
-      <div class="benefit">
-        <span>✳</span>
-        <div><strong>Bahan Berkualitas</strong><small>Dipilih dengan cermat</small></div>
-      </div>
-      <div class="benefit">
-        <span>♡</span>
-        <div><strong>Dibuat Setiap Hari</strong><small>Segar untuk dinikmati</small></div>
-      </div>
-      <div class="benefit">
-        <span>♧</span>
-        <div><strong>Rasa Istimewa</strong><small>Manis di setiap momen</small></div>
-      </div>
-    </section>
-
-    <section class="products section" id="produk">
-      <div class="section-heading">
-        <div>
-          <p class="eyebrow">OUR LITTLE COLLECTION</p>
-          <h2>Favorit yang <span>Bikin Bahagia.</span></h2>
-          <p class="section-description">
-            Temukan teman terbaik untuk kopi, perayaan, atau waktu santaimu.
+    <section class="hero" id="beranda">
+      <div class="container hero-content">
+        <div class="hero-text">
+          <span class="eyebrow">🚘 PERJALANAN JADI LEBIH MUDAH</span>
+          <h1>Sewa Kendaraan,<br><span>Jelajahi Lebih Jauh.</span></h1>
+          <p>
+            Butuh motor untuk berkeliling atau mobil untuk perjalanan bersama keluarga?
+            Temukan kendaraan yang sesuai dengan kebutuhanmu di RentGo.
           </p>
+          <div class="hero-actions">
+            <a href="#kendaraan" class="btn btn-primary">Lihat Kendaraan →</a>
+            <a href="#keunggulan" class="btn btn-outline">Kenapa RentGo?</a>
+          </div>
+          <div class="hero-stats">
+            <div><strong>Motor</strong><span>Praktis dan hemat</span></div>
+            <div><strong>Mobil</strong><span>Nyaman bersama keluarga</span></div>
+            <div><strong>Fleksibel</strong><span>Pilih durasi sewa</span></div>
+          </div>
         </div>
-        <a href="#kontak" class="text-link">Pesan kue khusus ↗</a>
-      </div>
 
-      <div class="filters" id="filters">
-        <button class="filter active" data-filter="all">Semua Menu</button>
-        <button class="filter" data-filter="cake">Cake</button>
-        <button class="filter" data-filter="pastry">Pastry</button>
-        <button class="filter" data-filter="dessert">Dessert</button>
-      </div>
-
-      <div class="product-grid">
-        <article class="product-card" data-category="cake">
-          <div class="product-image">
-            <span class="product-tag">BEST SELLER</span>
-            <img src="./images/strawberry-cake.jpg" alt="Strawberry cake"
-                 loading="lazy">
-          </div>
-          <div class="product-info">
-            <p class="product-category">CAKE COLLECTION</p>
-            <h3>Strawberry Dream</h3>
-            <p>Kelembutan cake dengan rasa stroberi yang segar.</p>
-            <div class="product-bottom">
-              <strong>Rp85.000</strong>
-              <button class="order-button" data-product="Strawberry Dream" data-price="85000">＋</button>
+        <div class="hero-image">
+          <img
+            src="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=1100&q=85"
+            alt="Mobil untuk disewakan"
+          >
+          <div class="floating-card">
+            <span class="floating-icon">✓</span>
+            <div>
+              <strong>Booking Mudah</strong>
+              <p>Pesan langsung melalui WhatsApp</p>
             </div>
           </div>
-        </article>
-
-        <article class="product-card" data-category="cake">
-          <div class="product-image">
-            <span class="product-tag">FAVORIT</span>
-            <img src="./images/chocolate-cake.jpg" alt="Chocolate cake"
-                 loading="lazy">
-          </div>
-          <div class="product-info">
-            <p class="product-category">CAKE COLLECTION</p>
-            <h3>Chocolate Bliss</h3>
-            <p>Cake cokelat dengan rasa pekat untuk pencinta cokelat.</p>
-            <div class="product-bottom">
-              <strong>Rp90.000</strong>
-              <button class="order-button" data-product="Chocolate Bliss" data-price="90000">＋</button>
-            </div>
-          </div>
-        </article>
-
-        <article class="product-card" data-category="pastry">
-          <div class="product-image">
-            <img src="./images/butter-croissant.jpg" alt="Butter croissant"
-                 loading="lazy">
-          </div>
-          <div class="product-info">
-            <p class="product-category">FRESH PASTRY</p>
-            <h3>Butter Croissant</h3>
-            <p>Pastry berlapis yang renyah dengan aroma mentega.</p>
-            <div class="product-bottom">
-              <strong>Rp25.000</strong>
-              <button class="order-button" data-product="Butter Croissant" data-price="25000">＋</button>
-            </div>
-          </div>
-        </article>
-
-        <article class="product-card" data-category="dessert">
-          <div class="product-image">
-            <span class="product-tag">CREAMY</span>
-            <img src="./images/tiramisu-cup.jpg" alt="Tiramisu cup"
-                 loading="lazy">
-          </div>
-          <div class="product-info">
-            <p class="product-category">SWEET DESSERT</p>
-            <h3>Tiramisu Cup</h3>
-            <p>Perpaduan krim lembut dan cita rasa kopi yang khas.</p>
-            <div class="product-bottom">
-              <strong>Rp30.000</strong>
-              <button class="order-button" data-product="Tiramisu Cup" data-price="30000">＋</button>
-            </div>
-          </div>
-        </article>
-
-        <article class="product-card" data-category="pastry">
-          <div class="product-image">
-            <img src="./images/cinnamon-roll.jpg" alt="Cinnamon roll"
-                 loading="lazy">
-          </div>
-          <div class="product-info">
-            <p class="product-category">FRESH PASTRY</p>
-            <h3>Cinnamon Roll</h3>
-            <p>Roti gulung lembut dengan aroma kayu manis.</p>
-            <div class="product-bottom">
-              <strong>Rp28.000</strong>
-              <button class="order-button" data-product="Cinnamon Roll" data-price="28000">＋</button>
-            </div>
-          </div>
-        </article>
-
-        <article class="product-card" data-category="dessert">
-          <div class="product-image">
-            <img src="./images/cheesecake.jpg" alt="Cheesecake"
-                 loading="lazy">
-          </div>
-          <div class="product-info">
-            <p class="product-category">SWEET DESSERT</p>
-            <h3>Classic Cheesecake</h3>
-            <p>Cheesecake lembut dengan rasa creamy yang seimbang.</p>
-            <div class="product-bottom">
-              <strong>Rp40.000</strong>
-              <button class="order-button" data-product="Classic Cheesecake" data-price="40000">＋</button>
-            </div>
-          </div>
-        </article>
+        </div>
       </div>
     </section>
 
-    <section class="story section" id="tentang">
-      <div class="story-image">
-        <img src="./images/bakery-story.jpg"
-             alt="Suasana pembuatan kue Nurul Cake"
-             loading="lazy">
-        <div class="story-stamp">BAKED<br>WITH ♡</div>
-      </div>
-      <div class="story-content">
-        <p class="eyebrow">A STORY IN EVERY BITE</p>
-        <h2>Bukan Sekadar Kue,<br><span>Tapi Sebuah Perasaan.</span></h2>
-        <p>
-          Di Nurul Cake, kami percaya bahwa kebahagiaan sering hadir
-          dari hal-hal sederhana. Aroma kue yang baru matang, waktu
-          bersama keluarga, dan kejutan kecil untuk orang tersayang.
-        </p>
-        <p>
-          Karena itu, setiap pilihan dibuat dengan perhatian pada rasa,
-          kualitas, dan detail agar setiap momen terasa lebih istimewa.
-        </p>
-        <a href="#kontak" class="button button-primary">Kenali Kami Lebih Dekat ↗</a>
+    <section class="search-strip">
+      <div class="container search-content">
+        <div>
+          <span class="search-label">PILIH KENDARAANMU</span>
+          <h2>Siap untuk perjalanan berikutnya?</h2>
+        </div>
+        <a href="#kendaraan" class="btn btn-primary">Cari Kendaraan</a>
       </div>
     </section>
 
-    <section class="quote-section">
-      <p class="eyebrow">A LITTLE REMINDER</p>
-      <h2>“Hidup terasa lebih manis<br>ketika dibagi bersama.”</h2>
-      <span>NURUL CAKE — MADE FOR YOUR MOMENTS</span>
+    <section class="section" id="kendaraan">
+      <div class="container">
+        <div class="section-heading">
+          <span class="eyebrow">KOLEKSI KENDARAAN</span>
+          <h2>Pilih Kendaraan Favoritmu</h2>
+          <p>Berbagai pilihan kendaraan untuk perjalanan harian maupun liburan.</p>
+        </div>
+
+        <div class="filter-buttons">
+          <button class="filter-btn active" data-filter="semua">Semua</button>
+          <button class="filter-btn" data-filter="motor">Motor</button>
+          <button class="filter-btn" data-filter="mobil">Mobil</button>
+        </div>
+
+        <div class="vehicle-grid">
+          <article class="vehicle-card" data-type="motor">
+            <div class="vehicle-image">
+              <img src="https://images.unsplash.com/photo-1558981806-ec527fa84c39?auto=format&fit=crop&w=900&q=80" alt="Motor matic" loading="lazy">
+              <span class="vehicle-tag">Motor</span>
+            </div>
+            <div class="vehicle-info">
+              <div class="vehicle-title">
+                <h3>Motor Matic</h3>
+                <span class="vehicle-capacity">👤 2 orang</span>
+              </div>
+              <p class="vehicle-description">Praktis untuk aktivitas harian dan jalan-jalan.</p>
+              <div class="vehicle-footer">
+                <div class="price">Rp100.000 <span>/ hari</span></div>
+                <button class="btn btn-small btn-primary rent-button" data-vehicle="Motor Matic" data-price="100000">Sewa</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="vehicle-card" data-type="motor">
+            <div class="vehicle-image">
+              <img src="https://images.unsplash.com/photo-1568772585407-9361f9bf3a87?auto=format&fit=crop&w=900&q=80" alt="Motor sport" loading="lazy">
+              <span class="vehicle-tag">Motor</span>
+            </div>
+            <div class="vehicle-info">
+              <div class="vehicle-title">
+                <h3>Motor Sport</h3>
+                <span class="vehicle-capacity">👤 2 orang</span>
+              </div>
+              <p class="vehicle-description">Pilihan untuk kamu yang menyukai gaya sporty.</p>
+              <div class="vehicle-footer">
+                <div class="price">Rp200.000 <span>/ hari</span></div>
+                <button class="btn btn-small btn-primary rent-button" data-vehicle="Motor Sport" data-price="200000">Sewa</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="vehicle-card" data-type="mobil">
+            <div class="vehicle-image">
+              <img src="https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&w=900&q=80" alt="Mobil keluarga" loading="lazy">
+              <span class="vehicle-tag">Mobil</span>
+            </div>
+            <div class="vehicle-info">
+              <div class="vehicle-title">
+                <h3>Mobil Keluarga</h3>
+                <span class="vehicle-capacity">👥 6–7 orang</span>
+              </div>
+              <p class="vehicle-description">Nyaman untuk perjalanan bersama keluarga.</p>
+              <div class="vehicle-footer">
+                <div class="price">Rp500.000 <span>/ hari</span></div>
+                <button class="btn btn-small btn-primary rent-button" data-vehicle="Mobil Keluarga" data-price="500000">Sewa</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="vehicle-card" data-type="mobil">
+            <div class="vehicle-image">
+              <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=900&q=80" alt="Mobil premium" loading="lazy">
+              <span class="vehicle-tag">Mobil</span>
+            </div>
+            <div class="vehicle-info">
+              <div class="vehicle-title">
+                <h3>Mobil Premium</h3>
+                <span class="vehicle-capacity">👥 2–4 orang</span>
+              </div>
+              <p class="vehicle-description">Gaya elegan untuk perjalanan yang istimewa.</p>
+              <div class="vehicle-footer">
+                <div class="price">Rp800.000 <span>/ hari</span></div>
+                <button class="btn btn-small btn-primary rent-button" data-vehicle="Mobil Premium" data-price="800000">Sewa</button>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <p class="price-note">
+          * Harga di atas adalah contoh. Konfirmasikan harga, ketersediaan, syarat,
+          dan biaya tambahan kepada pengelola sebelum memesan.
+        </p>
+      </div>
     </section>
 
-    <section class="contact section" id="kontak">
-      <div class="contact-content">
-        <p class="eyebrow">LET'S MAKE IT SPECIAL</p>
-        <h2>Ada Momen yang Ingin <span>Dirayakan?</span></h2>
-        <p>
-          Pesan kue untuk ulang tahun, hadiah, kumpul keluarga,
-          atau sekadar menemani harimu.
-        </p>
-        <button class="button button-primary" id="contactOrder">
-          Hubungi Kami via WhatsApp ↗
-        </button>
+    <section class="benefits section" id="keunggulan">
+      <div class="container">
+        <div class="section-heading">
+          <span class="eyebrow">KENAPA RENTGO?</span>
+          <h2>Rental Mudah, Perjalanan Nyaman</h2>
+          <p>Kami ingin membantu perjalananmu menjadi lebih praktis.</p>
+        </div>
+
+        <div class="benefit-grid">
+          <div class="benefit-card">
+            <div class="benefit-icon">💰</div>
+            <h3>Harga Transparan</h3>
+            <p>Informasi harga sewa ditampilkan agar kamu dapat memperkirakan biaya.</p>
+          </div>
+          <div class="benefit-card">
+            <div class="benefit-icon">📱</div>
+            <h3>Pemesanan Praktis</h3>
+            <p>Kirim detail permintaan sewa langsung melalui WhatsApp.</p>
+          </div>
+          <div class="benefit-card">
+            <div class="benefit-icon">🚗</div>
+            <h3>Pilihan Beragam</h3>
+            <p>Pilih motor atau mobil sesuai kebutuhan perjalananmu.</p>
+          </div>
+          <div class="benefit-card">
+            <div class="benefit-icon">🗓️</div>
+            <h3>Durasi Fleksibel</h3>
+            <p>Tentukan tanggal mulai dan lama sewa pada formulir pemesanan.</p>
+          </div>
+        </div>
       </div>
-      <div class="contact-decoration">
-        <span>♡</span>
-        <p>Sweet moments<br>start here.</p>
+    </section>
+
+    <section class="booking-section section" id="pemesanan">
+      <div class="container booking-layout">
+        <div class="booking-text">
+          <span class="eyebrow">PEMESANAN</span>
+          <h2>Pesan Kendaraanmu Sekarang</h2>
+          <p>Isi formulir berikut. Detail pesanan akan disiapkan untuk dikirim ke WhatsApp pengelola.</p>
+          <ul class="booking-list">
+            <li>✓ Pilih jenis kendaraan</li>
+            <li>✓ Tentukan tanggal dan durasi</li>
+            <li>✓ Konfirmasi ketersediaan dengan pengelola</li>
+          </ul>
+        </div>
+
+        <form id="bookingForm" class="booking-form">
+          <h3>Formulir Rental</h3>
+
+          <label for="nama">Nama lengkap</label>
+          <input type="text" id="nama" name="nama" placeholder="Masukkan nama kamu" required>
+
+          <label for="telepon">Nomor WhatsApp kamu</label>
+          <input type="tel" id="telepon" name="telepon" placeholder="Contoh: 081234567890" required>
+
+          <label for="kendaraan">Pilih kendaraan</label>
+          <select id="kendaraanSelect" name="kendaraan" required>
+            <option value="">-- Pilih kendaraan --</option>
+            <option value="Motor Matic">Motor Matic - Rp100.000/hari</option>
+            <option value="Motor Sport">Motor Sport - Rp200.000/hari</option>
+            <option value="Mobil Keluarga">Mobil Keluarga - Rp500.000/hari</option>
+            <option value="Mobil Premium">Mobil Premium - Rp800.000/hari</option>
+          </select>
+
+          <label for="tanggal">Tanggal mulai sewa</label>
+          <input type="date" id="tanggal" name="tanggal" required>
+
+          <label for="durasi">Durasi sewa (hari)</label>
+          <input type="number" id="durasi" name="durasi" min="1" max="30" value="1" required>
+
+          <div class="estimate">
+            <span>Estimasi harga sewa</span>
+            <strong id="estimasiHarga">Pilih kendaraan</strong>
+            <small>Belum termasuk biaya tambahan jika ada.</small>
+          </div>
+
+          <label for="catatan">Catatan tambahan (opsional)</label>
+          <textarea id="catatan" name="catatan" rows="3" placeholder="Misalnya: ingin bertanya tentang sopir atau persyaratan sewa"></textarea>
+
+          <button type="submit" class="btn btn-primary btn-submit">Kirim Pesanan via WhatsApp ↗</button>
+          <p class="form-note">Pesanan belum dikonfirmasi sampai pengelola menyetujuinya.</p>
+        </form>
+      </div>
+    </section>
+
+    <section class="contact-section" id="kontak">
+      <div class="container contact-content">
+        <div>
+          <span class="eyebrow">BUTUH BANTUAN?</span>
+          <h2>Ada yang ingin ditanyakan?</h2>
+          <p>Hubungi pengelola untuk informasi kendaraan, harga, dan persyaratan rental.</p>
+        </div>
+        <button id="contactButton" class="btn btn-light">Hubungi WhatsApp ↗</button>
       </div>
     </section>
   </main>
 
   <footer class="footer">
-    <a class="logo footer-logo" href="#home">
-      NURUL<span>CAKE.</span>
-      <small>FRESHLY BAKED WITH LOVE</small>
-    </a>
-    <p>Dibuat dengan cinta, untuk momen yang berarti.</p>
-    <a href="#home" class="back-top">Kembali ke atas ↑</a>
-    <div class="footer-bottom">
-      <span>© <span id="year"></span> NURUL Cake. All rights reserved.</span>
-      <span>Sweetness in every moment.</span>
+    <div class="container footer-content">
+      <a href="#beranda" class="logo">Rent<span>Go.</span></a>
+      <p>Solusi rental motor dan mobil untuk perjalananmu.</p>
+      <p class="copyright">© <span id="year"></span> RentGo. Semua hak dilindungi.</p>
     </div>
   </footer>
 
-  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
 
   <script src="./script.js"></script>
 </body>
